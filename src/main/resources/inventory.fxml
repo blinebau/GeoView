@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-background-color 0xffec98ff?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="456.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <AnchorPane maxWidth="200.0" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <VBox prefHeight="398.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <children>
+                <AnchorPane prefHeight="398.0" prefWidth="416.0">
+                  <children>
+                    <Button layoutX="41.0" layoutY="96.0" mnemonicParsing="false" prefHeight="31.64227294921875" prefWidth="117.85205078125" text="Sewer Lines" />
+                    <Button layoutX="41.0" layoutY="137.0" mnemonicParsing="false" prefHeight="31.64227294921875" prefWidth="117.85205078125" text="Manholes" />
+                    <Button layoutX="45.0" layoutY="245.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" text="Back" />
+                    <Button layoutX="41.0" layoutY="178.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="117.85205078125" text="Reports / Maps" />
+                    <Text layoutX="67.0" layoutY="53.0" scaleX="1.7705475148098626" scaleY="2.1601125863568083" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select:">
+                      <font>
+                        <Font name="Calibri" size="12.0" />
+                      </font>
+                    </Text>
+                  </children>
+                </AnchorPane>
+              </children>
+            </VBox>
+          </children>
+        </AnchorPane>
+      </center>
+    </BorderPane>
+  </children>
+</AnchorPane>

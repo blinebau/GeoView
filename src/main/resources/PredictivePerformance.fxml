@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color #ffec98?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="456.0" styleClass="theme" stylesheets="@../../../../../Desktop/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="theme" stylesheets="@../../../../../Desktop/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <BorderPane prefHeight="340.0" prefWidth="456.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
@@ -26,11 +26,11 @@
             <Pane prefHeight="12.0" prefWidth="457.0" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <VBox prefHeight="83.0" prefWidth="229.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="83.0" prefWidth="229.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane prefHeight="295.0" prefWidth="258.0">
+                  <AnchorPane prefHeight="366.0" prefWidth="297.0">
                      <children>
-                        <VBox id="RadioVBox" prefHeight="176.0" prefWidth="258.0">
+                        <VBox id="RadioVBox" layoutX="72.0" layoutY="7.0" prefHeight="176.0" prefWidth="258.0">
                            <children>
                               <Text id="predictivePerformanceText" strokeType="OUTSIDE" strokeWidth="0.0" text="Predictive Performance">
                                  <font>
@@ -41,18 +41,21 @@
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="PredictiveToggle" />
+                                 </toggleGroup>
                               </RadioButton>
-                              <RadioButton id="pipeFailure2" mnemonicParsing="false" text="Pipe Failures Within 1-5 Years">
+                              <RadioButton id="pipeFailure2" mnemonicParsing="false" text="Pipe Failures Within 1-5 Years" toggleGroup="$PredictiveToggle">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton id="pipeFailure3" mnemonicParsing="false" text="Pipe Failures Within 5-10 Years">
+                              <RadioButton id="pipeFailure3" mnemonicParsing="false" text="Pipe Failures Within 5-10 Years" toggleGroup="$PredictiveToggle">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton id="pipeFailure4" mnemonicParsing="false" text="Pipe Failures After 10 Years">
+                              <RadioButton id="pipeFailure4" mnemonicParsing="false" text="Pipe Failures After 10 Years" toggleGroup="$PredictiveToggle">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
@@ -71,7 +74,7 @@
                               </VBox>
                            </children>
                         </VBox>
-                        <HBox layoutY="195.0" prefHeight="100.0" prefWidth="258.0">
+                        <HBox layoutX="72.0" layoutY="196.0" prefHeight="100.0" prefWidth="258.0">
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="127.0">
                                  <children>

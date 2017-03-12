@@ -8,19 +8,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.collections.*?>
 <?scenebuilder-background-color #ffec98?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="456.0" styleClass="theme" stylesheets="@../../../../../Desktop/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="theme" stylesheets="@../../../../../Desktop/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <BorderPane prefHeight="340.0" prefWidth="456.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
-            <Pane prefHeight="306.0" prefWidth="47.0" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="306.0" prefWidth="120.0" BorderPane.alignment="CENTER" />
          </right>
          <top>
             <Pane prefHeight="22.0" prefWidth="457.0" BorderPane.alignment="CENTER" />
          </top>
          <left>
-            <Pane prefHeight="306.0" prefWidth="69.0" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="306.0" prefWidth="130.0" BorderPane.alignment="CENTER" />
          </left>
          <bottom>
             <Pane prefHeight="12.0" prefWidth="457.0" BorderPane.alignment="CENTER" />
@@ -30,7 +31,7 @@
                <children>
                   <AnchorPane prefHeight="368.0" prefWidth="340.0">
                      <children>
-                        <VBox prefHeight="360.0" prefWidth="340.0">
+                        <VBox prefHeight="360.0" prefWidth="340.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <HBox prefHeight="42.0" prefWidth="340.0">
                                  <children>
@@ -45,7 +46,19 @@
                                     </VBox>
                                     <VBox prefHeight="34.0" prefWidth="207.0">
                                        <children>
-                                          <ChoiceBox id="cipYearChoiceBox" prefHeight="26.0" prefWidth="215.0" />
+                                          <ChoiceBox id="cipYearChoiceBox" prefHeight="26.0" prefWidth="215.0" >
+                                              <FXCollections fx:factory="observableArrayList">
+                                                  <String fx:value="Year 2011"/>
+                                                  <String fx:value="Year 2012"/>
+                                                  <String fx:value="Year 2013"/>
+                                                  <String fx:value="Year 2014"/>
+                                                  <String fx:value="Year 2015"/>
+                                                  <String fx:value="Year 2016"/>
+                                                  <String fx:value="Year 2017"/>
+                                                  <String fx:value="Year 2018"/>
+                                                  <String fx:value="Year 2019"/>
+                                              </FXCollections>
+                                          </ChoiceBox>
                                        </children>
                                     </VBox>
                                  </children>
@@ -56,21 +69,32 @@
                                  </font>
                               </Text>
                               <RadioButton id="pipeReplacementRadio" mnemonicParsing="false" text="Pipe Replacement">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="rehabtoggle" />
+                                 </toggleGroup>
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
                               <ChoiceBox id="pipeReplacementChoiceBox" prefHeight="26.0" prefWidth="338.0">
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Same-Size Replacement"/>
+                                       <String fx:value="Up-Size Replacement"/>
+                                    </FXCollections>
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ChoiceBox>
-                              <RadioButton id="pipeFailureRadio" mnemonicParsing="false" text="Pipe Failures After 10 Years">
+                              <RadioButton id="pipeFailureRadio" mnemonicParsing="false" text="Pipe Failures After 10 Years" toggleGroup="$rehabtoggle">
                                  <padding>
                                     <Insets top="7.0" />
                                  </padding>
                               </RadioButton>
                               <ChoiceBox id="pipeFailureChoiceBox" prefHeight="26.0" prefWidth="338.0">
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Full Trench Replacement"/>
+                                       <String fx:value="Partial Trench Replacement"/>
+                                    </FXCollections>
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>

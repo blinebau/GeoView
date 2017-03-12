@@ -26,7 +26,7 @@
             <Pane prefHeight="12.0" prefWidth="457.0" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <VBox prefHeight="83.0" prefWidth="229.0" BorderPane.alignment="CENTER">
+            <VBox id="VBoxContent" prefHeight="83.0" prefWidth="229.0" BorderPane.alignment="CENTER">
                <children>
                   <AnchorPane prefHeight="368.0" prefWidth="340.0">
                      <children>
@@ -36,7 +36,7 @@
                                  <children>
                                     <VBox prefHeight="34.0" prefWidth="123.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CIP Year">
+                                          <Text id="cipYearText" strokeType="OUTSIDE" strokeWidth="0.0" text="CIP Year">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -45,37 +45,37 @@
                                     </VBox>
                                     <VBox prefHeight="34.0" prefWidth="207.0">
                                        <children>
-                                          <ChoiceBox prefHeight="26.0" prefWidth="215.0" />
+                                          <ChoiceBox id="cipYearChoiceBox" prefHeight="26.0" prefWidth="215.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rehabilitation Methodology">
+                              <Text id="rehabMethodologyText" strokeType="OUTSIDE" strokeWidth="0.0" text="Rehabilitation Methodology">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Text>
-                              <RadioButton mnemonicParsing="false" text="Pipe Replacement">
+                              <RadioButton id="pipeReplacementRadio" mnemonicParsing="false" text="Pipe Replacement">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <ChoiceBox prefHeight="26.0" prefWidth="338.0">
+                              <ChoiceBox id="pipeReplacementChoiceBox" prefHeight="26.0" prefWidth="338.0">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ChoiceBox>
-                              <RadioButton mnemonicParsing="false" text="Pipe Failures After 10 Years">
+                              <RadioButton id="pipeFailureRadio" mnemonicParsing="false" text="Pipe Failures After 10 Years">
                                  <padding>
                                     <Insets top="7.0" />
                                  </padding>
                               </RadioButton>
-                              <ChoiceBox prefHeight="26.0" prefWidth="338.0">
+                              <ChoiceBox id="pipeFailureChoiceBox" prefHeight="26.0" prefWidth="338.0">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </ChoiceBox>
-                              <GridPane>
+                              <GridPane id="budget">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="104.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="236.0" />
@@ -84,12 +84,12 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Budget  ($)">
+                                    <Text id="budgetText" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget  ($)">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <TextField prefHeight="26.0" prefWidth="219.0" GridPane.columnIndex="1" />
+                                    <TextField id="budgetTextField" prefHeight="26.0" prefWidth="219.0" GridPane.columnIndex="1" />
                                  </children>
                                  <VBox.margin>
                                     <Insets top="10.0" />
@@ -97,14 +97,14 @@
                               </GridPane>
                               <VBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="340.0">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Calculate">
+                                    <Button id="calculateButton" mnemonicParsing="false" text="Calculate">
                                        <VBox.margin>
                                           <Insets top="4.0" />
                                        </VBox.margin>
                                     </Button>
                                  </children>
                               </VBox>
-                              <GridPane>
+                              <GridPane id="functionalGrid">
                                 <columnConstraints>
                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -114,7 +114,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="100.0" text="Back" textAlignment="CENTER">
+                                    <Button id="backButton" mnemonicParsing="false" prefWidth="100.0" text="Back" textAlignment="CENTER">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -122,7 +122,7 @@
                                           <Insets bottom="3.0" top="3.0" />
                                        </padding>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefWidth="100.0" text="Main" textAlignment="CENTER" GridPane.columnIndex="1">
+                                    <Button id="mainButton" mnemonicParsing="false" prefWidth="100.0" text="Main" textAlignment="CENTER" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -130,7 +130,7 @@
                                           <Insets bottom="3.0" top="3.0" />
                                        </padding>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefWidth="100.0" text="Print" textAlignment="CENTER" GridPane.columnIndex="2">
+                                    <Button id="printButton" mnemonicParsing="false" prefWidth="100.0" text="Print" textAlignment="CENTER" GridPane.columnIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -143,14 +143,14 @@
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </GridPane>
-                              <GridPane>
+                              <GridPane id="view">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="150.0" text="Date View">
+                                    <Button id="dateView" mnemonicParsing="false" prefWidth="150.0" text="Date View">
                                        <padding>
                                           <Insets bottom="3.0" top="3.0" />
                                        </padding>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefWidth="150.0" text="Print Preview" GridPane.columnIndex="1">
+                                    <Button id="printPreview" mnemonicParsing="false" prefWidth="150.0" text="Print Preview" GridPane.columnIndex="1">
                                        <padding>
                                           <Insets bottom="3.0" top="3.0" />
                                        </padding>
@@ -167,14 +167,14 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </GridPane>
-                              <GridPane>
+                              <GridPane id="export">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="150.0" text="Export Graphics">
+                                    <Button id="exportGraphics" mnemonicParsing="false" prefWidth="150.0" text="Export Graphics">
                                        <padding>
                                           <Insets bottom="3.0" top="3.0" />
                                        </padding>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefWidth="150.0" text="Export Table" GridPane.columnIndex="1">
+                                    <Button id="exportTable" mnemonicParsing="false" prefWidth="150.0" text="Export Table" GridPane.columnIndex="1">
                                        <padding>
                                           <Insets bottom="3.0" top="3.0" />
                                        </padding>

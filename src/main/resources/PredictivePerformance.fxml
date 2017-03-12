@@ -30,36 +30,36 @@
                <children>
                   <AnchorPane prefHeight="295.0" prefWidth="258.0">
                      <children>
-                        <VBox prefHeight="176.0" prefWidth="258.0">
+                        <VBox id="RadioVBox" prefHeight="176.0" prefWidth="258.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Predictive Performance">
+                              <Text id="predictivePerformanceText" strokeType="OUTSIDE" strokeWidth="0.0" text="Predictive Performance">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Text>
-                              <RadioButton mnemonicParsing="false" text="Pipe Failures Within 0-12 Months">
+                              <RadioButton id="pipeFailure1" mnemonicParsing="false" text="Pipe Failures Within 0-12 Months">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Pipe Failures Within 1-5 Years">
+                              <RadioButton id="pipeFailure2" mnemonicParsing="false" text="Pipe Failures Within 1-5 Years">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Pipe Failures Within 5-10 Years">
+                              <RadioButton id="pipeFailure3" mnemonicParsing="false" text="Pipe Failures Within 5-10 Years">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Pipe Failures After 10 Years">
+                              <RadioButton id="pipeFailure4" mnemonicParsing="false" text="Pipe Failures After 10 Years">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
                               <VBox alignment="TOP_CENTER" prefHeight="40.0" prefWidth="258.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="12.0" prefWidth="58.0" text="Find">
+                                    <Button id="findButton" mnemonicParsing="false" prefHeight="12.0" prefWidth="58.0" text="Find">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
@@ -75,7 +75,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="127.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Back">
+                                    <Button id="backButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Back">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="3.0" right="3.0" top="5.0" />
                                        </VBox.margin>
@@ -83,7 +83,7 @@
                                           <Insets bottom="5.0" top="5.0" />
                                        </padding>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefWidth="120.0" text="Print">
+                                    <Button id="printButton" mnemonicParsing="false" prefWidth="120.0" text="Print">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="3.0" right="3.0" top="5.0" />
                                        </VBox.margin>
@@ -91,7 +91,7 @@
                                           <Insets bottom="5.0" top="5.0" />
                                        </padding>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefWidth="120.0" text="Export Graphics">
+                                    <Button id="exportGraphicsButton" mnemonicParsing="false" prefWidth="120.0" text="Export Graphics">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="3.0" right="3.0" top="5.0" />
                                        </VBox.margin>
@@ -103,7 +103,7 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="108.0" prefWidth="131.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="120.0" text="Data View">
+                                    <Button id="dataViewButton" mnemonicParsing="false" prefWidth="120.0" text="Data View">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="3.0" right="3.0" top="5.0" />
                                        </VBox.margin>
@@ -111,7 +111,7 @@
                                           <Insets bottom="5.0" top="5.0" />
                                        </padding>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefWidth="120.0" text="Print Preview">
+                                    <Button id="printPreviewButton" mnemonicParsing="false" prefWidth="120.0" text="Print Preview">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="3.0" right="3.0" top="5.0" />
                                        </VBox.margin>
@@ -119,7 +119,7 @@
                                           <Insets bottom="5.0" top="5.0" />
                                        </padding>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefWidth="120.0" text="Export Table">
+                                    <Button id="exportTableButton" mnemonicParsing="false" prefWidth="120.0" text="Export Table">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="3.0" right="3.0" top="5.0" />
                                        </VBox.margin>

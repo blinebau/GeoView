@@ -28,6 +28,7 @@ public class MainMenuController {
 	@FXML
 	private Button maintenanceScenarios;
 	
+	@FXML
 	public void initialize() {
 		assert(importMap_Data != null);
 		assert(sci != null);
@@ -52,20 +53,17 @@ public class MainMenuController {
 		sci.getScene().setRoot((Parent)load.load());
 	}
 	
-/*	public void inventoryEvent() {
-		
-	}*/
 	
 	@FXML
 	public void predictivePerformanceEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("PredictivePerformance.fxml"));
-		sci.getScene().setRoot((Parent)load.load());
+		predictivePerformance.getScene().setRoot((Parent)load.load());
 	}
 	
 	@FXML
 	public void maintenanceScenariosEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("MaintenanceScenarios.fxml"));
-		sci.getScene().setRoot((Parent)load.load());
+		maintenanceScenarios.getScene().setRoot((Parent)load.load());
 	}
 	
 

@@ -79,6 +79,7 @@ public class SCIController {
 		assert(exportTable != null);
 		assert(dataView != null);
 		assert(print != null);
+		assert(back != null);
 		search.setDisable(true);
 		exportGraphics.setDisable(true);
 		exportTable.setDisable(true);
@@ -93,7 +94,7 @@ public class SCIController {
 	@FXML
 	public void backEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
-		sci.getScene().setRoot((Parent)load.load());
+		back.getScene().setRoot((Parent)load.load());
 	}
 	
 	private void configureRadioToggleListener() {

@@ -1,1 +1,1 @@
-AmateurProfessionals_GeoView  An University of California, Irvine (UCI) capstone project for the Software Engineering and Informatics majors. This project is worked on in cooperation with Carollo Engineers, an environmental engineering firm with a focus water and wastewater infrastructure.
+GeoView is a capstone project for INF191A/B Senior project course at UCI.

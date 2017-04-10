@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 public class SCIController {
 	
@@ -31,6 +32,9 @@ public class SCIController {
 	
 	@FXML
 	private RadioButton icg;
+	
+	@FXML 
+	private ToggleGroup searchToggle;
 	
 	@FXML
 	private RadioButton defect;
@@ -92,13 +96,13 @@ public class SCIController {
 	}
 	
 	@FXML
-	public void backEvent(ActionEvent event) throws IOException {
+	private void backEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
 		back.getScene().setRoot((Parent)load.load());
 	}
 	
 	private void configureRadioToggleListener() {
-		defect.getToggleGroup().selectedToggleProperty().addListener((observer, oldVal, newVal) -> {
+		searchToggle.selectedToggleProperty().addListener((observed, oldVal, newVal) -> {
 			if(newVal.equals(sci) || newVal.equals(icg)) {
 				defectChoice.getSelectionModel().clearSelection();
 				defectChoice.setDisable(true);
@@ -110,8 +114,7 @@ public class SCIController {
 					sciFrom.textProperty().setValue("");
 					sciTo.textProperty().setValue("");
 				}
-			}
-			else {
+			} else {
 				sciFrom.textProperty().setValue("");
 				sciTo.textProperty().setValue("");
 				icgFrom.textProperty().setValue("");
@@ -121,7 +124,6 @@ public class SCIController {
 			}
 		});
 	}
-	
 	
 	private void configureFieldEntryListeners() {
 		sciFrom.textProperty().addListener((observed, oldVal, newVal) -> {
@@ -150,5 +152,4 @@ public class SCIController {
 			}
 		});
 	}
-	
 }

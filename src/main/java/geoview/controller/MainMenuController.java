@@ -43,8 +43,10 @@ public class MainMenuController {
 		//importMap_Data.setDisable(true);
 	}
 	
-	public void importEvent() {
-		//TODO
+	@FXML
+	public void importEvent(ActionEvent event) throws IOException {
+		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
+		importMap_Data.getScene().setRoot((Parent)load.load());
 	}
 	
 	@FXML

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color 0xffec98ff?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="geoview.controller.MainMenuController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geoview.controller.MainMenuController">
   <children>
     <BorderPane prefHeight="340.0" prefWidth="456.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <center>
@@ -18,7 +18,7 @@
               <children>
                 <AnchorPane prefHeight="398.0" prefWidth="200.0">
                   <children>
-                    <Button fx:id="importMap_Data" layoutX="26.0" layoutY="271.0" mnemonicParsing="false" prefWidth="147.0" text="Import Map/Dataset" />
+                    <Button fx:id="importMap_Data" layoutX="26.0" layoutY="271.0" mnemonicParsing="false" onAction="#importEvent" prefWidth="147.0" text="Import Map/Dataset" />
                     <Button fx:id="sci" layoutX="27.0" layoutY="147.0" mnemonicParsing="false" onAction="#sciEvent" prefWidth="147.0" text="SCI" />
                     <Text layoutX="77.0" layoutY="80.0" scaleX="3.4194283094050855" scaleY="3.3181887658567235" strokeType="OUTSIDE" strokeWidth="0.0" text="GeoView">
                       <font>

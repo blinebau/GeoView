@@ -109,12 +109,12 @@
               <children>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                            <children>
-                              <TextArea fx:id="name" layoutX="68.0" layoutY="-1.0" prefHeight="30.0" prefWidth="200.0" />
+                              <TextArea fx:id="name" layoutX="68.0" layoutY="-1.0" prefHeight="30.0" prefWidth="286.0" />
                               <Text layoutX="-7.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File selected: " />
                            </children></AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                            <children>
-                    <Button layoutX="26.0" layoutY="-1.0" mnemonicParsing="false" onAction="#nextEvent" prefHeight="30.0" prefWidth="175.0" text="Search" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="-26.0" AnchorPane.topAnchor="-1.0" />
+                    <Button layoutX="105.0" layoutY="-1.0" mnemonicParsing="false" onAction="#nextEvent" prefHeight="30.0" prefWidth="174.0" text="Search" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="-1.0" />
                            </children></AnchorPane>
               </children>
               <columnConstraints>

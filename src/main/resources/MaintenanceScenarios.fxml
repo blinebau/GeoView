@@ -144,7 +144,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="back" onAction="#backEvent" mnemonicParsing="false" prefWidth="100.0" text="Back" textAlignment="CENTER">
+                                    <Button fx:id="back" mnemonicParsing="false" onAction="#backEvent" prefWidth="100.0" text="Back" textAlignment="CENTER">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>

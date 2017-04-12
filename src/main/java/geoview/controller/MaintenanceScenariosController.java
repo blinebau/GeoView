@@ -89,7 +89,7 @@ public class MaintenanceScenariosController {
 		budget.setDisable(true);
 		main.setDisable(true);
 		
-		configureRadioToggleListener();
+		//configureRadioToggleListener();
 		configureChoiceBoxListeners();
 	} 
 	
@@ -99,7 +99,7 @@ public class MaintenanceScenariosController {
 		back.getScene().setRoot((Parent)load.load());
 	}
 	
-	@FXML
+/*	@FXML
 	private void configureRadioToggleListener() {
 		rehabToggle.selectedToggleProperty().addListener((observed, oldVal, newVal) -> {
 			if(newVal.equals(pipeReplacementRadio)) {
@@ -108,7 +108,7 @@ public class MaintenanceScenariosController {
 				
 			}
 		});
-	}
+	}*/
 	
 	@FXML
 	private void configureChoiceBoxListeners() {

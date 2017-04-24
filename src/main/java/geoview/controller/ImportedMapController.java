@@ -21,16 +21,18 @@ import javafx.scene.Scene;
 public class ImportedMapController {
         private ArcGISMap map;
         private MapView mapView;    
+        
+        
 	
-	@FXML
+/*	@FXML
 	private StackPane mapArea;
-	
-	@FXML
+	*/
+/*	@FXML
 	public void initialize() {
-            /*
+            
             Current Implementation imports from portal. In the future we will ask whether user
             wants to import from portal or upload a feature table.
-            */
+            
             assert(mapArea != null);  
 
             Portal portal = new Portal("http://www.arcgis.com");
@@ -39,6 +41,16 @@ public class ImportedMapController {
             mapView = new MapView();
             mapView.setMap(map);
             mapArea.getChildren().add(mapView);
-	}	
+	}*/
+	
+	public MapView importMap(String portalId) {
+	        Portal portal = new Portal("http://www.arcgis.com");
+	        PortalItem portalItem = new PortalItem(portal, portalId);
+	        map = new ArcGISMap(portalItem);
+	        mapView = new MapView();
+	        mapView.setMap(map);
+	        //mapArea.getChildren().add(mapView);
+	        return mapView;
+	} 
 
 }

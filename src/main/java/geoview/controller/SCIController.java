@@ -91,7 +91,7 @@ public class SCIController {
 		dataView.setDisable(true);
 		print.setDisable(true);
 		defectChoice.setDisable(true);
-		configureRadioToggleListener();
+		configureSearchToggleListener();
 		configureFieldEntryListeners();
 	}
 	
@@ -101,7 +101,7 @@ public class SCIController {
 		back.getScene().setRoot((Parent)load.load());
 	}
 	
-	private void configureRadioToggleListener() {
+	private void configureSearchToggleListener() {
 		searchToggle.selectedToggleProperty().addListener((observed, oldVal, newVal) -> {
 			if(newVal.equals(sci) || newVal.equals(icg)) {
 				defectChoice.getSelectionModel().clearSelection();

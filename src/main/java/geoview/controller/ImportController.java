@@ -7,6 +7,8 @@ import java.util.function.Consumer;
 
 import com.esri.arcgisruntime.mapping.view.MapView;
 
+import geoview.importers.ImportFileDirectory;
+import geoview.importers.ImportPortalMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -49,6 +52,8 @@ public class ImportController {
 		@FXML
 		private TextField idField;
 		
+		private FXMLLoader main_load;
+		
 		@FXML
 		public void initialize() {
 			assert(fsRadio != null);
@@ -59,6 +64,7 @@ public class ImportController {
 			assert(browseButton != null);
 			assert(idField != null);
 			configureSearchToggleListener();
+			main_load = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
 		}
 		
 		@FXML
@@ -72,40 +78,35 @@ public class ImportController {
 			});
 		}
 		
-		@FXML
 		public void browseEvent() throws IOException {
-			Desktop desktop = Desktop.getDesktop();
-			FileChooser fileChooser = new FileChooser();
-			File file = fileChooser.showOpenDialog(null);
-			if (file != null) {
-				//Load file
-				fileName = file.getName();
-				pathField.setText(fileName);
-				//System.out.println(fileName);
-			}
+				pathField.setText(ImportFileDirectory.browseEvent());
 		}
 		
 		
 		@FXML
 		public void backEvent(ActionEvent event) throws IOException {
-			FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
-			backButton.getScene().setRoot((Parent)load.load());
+			backButton.getScene().setRoot((Parent)main_load.load());
 		}
 		
-		@FXML public void importEvent(ActionEvent event) {
+		@FXML 
+		public void importEvent(ActionEvent event) throws IOException {
 			boolean fsImport = searchToggle.getSelectedToggle().equals(fsRadio);
 			if(fsImport) {
 				//get path text
 				//pass to importmapcontroller for local map file
 			} else {
-				ImportedMapController controller = new ImportedMapController();
-				MapView view = controller.importMap(idField.getText().toString());
-				Stage stage = new Stage();
-				StackPane stack = new StackPane();
-				stack.getChildren().add(view);
-				Scene scene = new Scene(stack, 600, 400);
-				stage.setScene(scene);
-				stage.show();
+				MapView view = ImportPortalMap.importMap(idField.getText().toString());
+				Stage mapStage = new Stage();
+				StackPane mapStack = new StackPane();
+				mapStack.getChildren().add(view);
+				Scene scene = new Scene(mapStack, 600, 400);
+				mapStage.setScene(scene);
+				mapStage.getIcons().add(new Image("/geoview_logo_temp.png"));
+				mapStage.setTitle("GEOVIEW - MAP");
+				mapStage.show();
+				importButton.getScene().setRoot((Parent)main_load.load());
 			}
 		}
+		
+		//Add Map Destructor on Map Window Close
 }

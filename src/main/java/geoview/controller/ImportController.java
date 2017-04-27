@@ -1,14 +1,9 @@
 package geoview.controller;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-import java.util.function.Consumer;
 
-import com.esri.arcgisruntime.mapping.view.MapView;
-
-import geoview.importers.ImportFileDirectory;
+import geoview.importers.ImportFileMap;
 import geoview.importers.ImportPortalMap;
+import geoview.importers.ImportedMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,17 +11,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
+
+import com.esri.arcgisruntime.mapping.view.MapView;
+
 public class ImportController {
-		private String fileName;
 		
 		@FXML
 		private RadioButton fsRadio;
@@ -79,7 +75,7 @@ public class ImportController {
 		}
 		
 		public void browseEvent() throws IOException {
-				pathField.setText(ImportFileDirectory.browseEvent());
+				pathField.setText(getFilePath());
 		}
 		
 		
@@ -91,22 +87,36 @@ public class ImportController {
 		@FXML 
 		public void importEvent(ActionEvent event) throws IOException {
 			boolean fsImport = searchToggle.getSelectedToggle().equals(fsRadio);
+			ImportedMap map;
+			
 			if(fsImport) {
-				//get path text
-				//pass to importmapcontroller for local map file
+				map = new ImportFileMap(pathField.getText());
 			} else {
-				MapView view = ImportPortalMap.importMap(idField.getText().toString());
+				map = new ImportPortalMap(idField.getText());
+			}
+			Stage mapStage = generateMapStage(map.getView());
+			mapStage.show();
+			importButton.getScene().setRoot((Parent)main_load.load());
+		}
+		
+		private String getFilePath() throws IOException {
+			FileChooser fileChooser = new FileChooser();
+			File file = fileChooser.showOpenDialog(null);
+			if (file != null) {
+				return file.getName();
+			}
+			return "";
+		}
+		
+		private Stage generateMapStage(MapView view) {
 				Stage mapStage = new Stage();
-				StackPane mapStack = new StackPane();
-				mapStack.getChildren().add(view);
-				Scene scene = new Scene(mapStack, 600, 400);
+				mapStage.setOnCloseRequest((event) -> {
+					view.dispose();
+				});
+				Scene scene = new Scene(view, 600, 400);
 				mapStage.setScene(scene);
 				mapStage.getIcons().add(new Image("/geoview_logo_temp.png"));
 				mapStage.setTitle("GEOVIEW - MAP");
-				mapStage.show();
-				importButton.getScene().setRoot((Parent)main_load.load());
-			}
+				return mapStage;
 		}
-		
-		//Add Map Destructor on Map Window Close
 }

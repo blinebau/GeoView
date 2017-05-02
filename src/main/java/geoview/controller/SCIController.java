@@ -2,7 +2,6 @@ package geoview.controller;
 
 import java.io.IOException;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

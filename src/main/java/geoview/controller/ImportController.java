@@ -23,7 +23,9 @@ import java.io.IOException;
 import com.esri.arcgisruntime.mapping.view.MapView;
 
 public class ImportController {
-		
+	
+		private Stage mapStage;
+	
 		@FXML
 		private RadioButton fsRadio;
 		
@@ -82,6 +84,8 @@ public class ImportController {
 		@FXML
 		public void backEvent(ActionEvent event) throws IOException {
 			backButton.getScene().setRoot((Parent)main_load.load());
+			MainMenuController cntrl = main_load.<MainMenuController>getController();
+			cntrl.initMapStage(mapStage);
 		}
 		
 		@FXML 
@@ -94,9 +98,8 @@ public class ImportController {
 			} else {
 				map = new ImportPortalMap(idField.getText());
 			}
-			Stage mapStage = generateMapStage(map.getView());
+			mapStage = generateMapStage(map.getView());
 			mapStage.show();
-			importButton.getScene().setRoot((Parent)main_load.load());
 		}
 		
 		private String getFilePath() throws IOException {
@@ -110,6 +113,7 @@ public class ImportController {
 		
 		private Stage generateMapStage(MapView view) {
 				Stage mapStage = new Stage();
+				mapStage.setResizable(false);
 				mapStage.setOnCloseRequest((event) -> {
 					view.dispose();
 				});

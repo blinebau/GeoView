@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 
 import com.esri.arcgisruntime.mapping.view.MapView;
+import com.esri.arcgisruntime.portal.Portal;
+import com.esri.arcgisruntime.portal.PortalItem;
 
 public class ImportController {
 	
@@ -96,8 +98,13 @@ public class ImportController {
 			if(fsImport) {
 				map = new ImportFileMap(pathField.getText());
 			} else {
-				map = new ImportPortalMap(idField.getText());
+		        Portal portal = new Portal("http://www.arcgis.com");
+		        PortalItem portalItem = new PortalItem(portal, idField.getText());
+				map = new ImportPortalMap(portalItem);
 			}
+			
+			//Portal Item -> generateMapData(portalItem);
+			//mapData - get feature attribute maps -> calculate the sci lof rof
 			mapStage = generateMapStage(map.getView());
 			mapStage.show();
 		}

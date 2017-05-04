@@ -9,13 +9,11 @@ public class ImportPortalMap implements ImportedMap {
 	
 	private MapView view;
 	
-	public ImportPortalMap(String portalId) {
-		view = importMap(portalId);
+	public ImportPortalMap(PortalItem portalItem) {
+		view = importMap(portalItem);
 	}
 	
-	public MapView importMap(String portalId) {
-	        Portal portal = new Portal("http://www.arcgis.com");
-	        PortalItem portalItem = new PortalItem(portal, portalId);
+	public MapView importMap(PortalItem portalItem) {
 	        ArcGISMap map = new ArcGISMap(portalItem);
 	        MapView view = new MapView();
 	        view.setMap(map);

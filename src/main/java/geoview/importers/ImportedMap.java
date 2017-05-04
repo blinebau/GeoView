@@ -4,7 +4,5 @@ import com.esri.arcgisruntime.mapping.view.MapView;
 
 public interface ImportedMap {
 
-	MapView importMap(String mapId);
-
 	MapView getView();
 }

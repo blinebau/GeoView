@@ -18,9 +18,7 @@ public class ImportFileMap implements ImportedMap {
 		mmpk.loadAsync();
 		
 		mmpk.addDoneLoadingListener(() -> {
-			if(mmpk.getLoadStatus() == LoadStatus.LOADED) {
-				view.setMap(mmpk.getMaps().get(0));
-			}
+			view.setMap(mmpk.getMaps().get(0));
 		});
 		return view;
 	}

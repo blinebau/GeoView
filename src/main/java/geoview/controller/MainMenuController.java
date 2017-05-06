@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.esri.arcgisruntime.mapping.view.MapView;
 
+import geoview.data.FeatureData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +35,9 @@ public class MainMenuController {
 	@FXML
 	private Button maintenanceScenarios;
 	
-	private Stage currentMapStage;
+	private Stage mapStage;
+	
+	private FeatureData mapData;
 	
 	@FXML
 	public void initialize() {
@@ -48,7 +51,7 @@ public class MainMenuController {
 	
 	@FXML
 	public void importEvent(ActionEvent event) throws IOException {
-		if(currentMapStage != null) {
+		if(mapStage != null) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.initOwner(importMap_Data.getScene().getWindow());
 			alert.setResizable(false);
@@ -58,10 +61,10 @@ public class MainMenuController {
 			alert.setContentText("Importing new data now will begin a new session, closing the map window. Do you wish to import new data?");
 			Optional<ButtonType> result = alert.showAndWait();
 			if(result.get() == ButtonType.OK) {
-				Scene mapScene = currentMapStage.getScene();
+				Scene mapScene = mapStage.getScene();
 				MapView view = (MapView) mapScene.getRoot();
 				view.dispose();
-				currentMapStage.close();
+				mapStage.close();
 				FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
 				importMap_Data.getScene().setRoot((Parent)load.load());
 			}
@@ -90,8 +93,9 @@ public class MainMenuController {
 		maintenanceScenarios.getScene().setRoot((Parent)load.load());
 	}
 	
-	public void initMapStage(Stage currentMapStage) {
-		this.currentMapStage = currentMapStage;
+	public void initMapStage(Stage newMapStage, FeatureData newMapData) {
+		mapStage = newMapStage;
+		mapData = newMapData;
 	}
 	
 

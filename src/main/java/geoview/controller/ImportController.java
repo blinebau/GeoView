@@ -1,9 +1,11 @@
 package geoview.controller;
 
 
+import geoview.data.FeatureData;
 import geoview.importers.ImportFileMap;
 import geoview.importers.ImportPortalMap;
 import geoview.importers.ImportedMap;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +56,8 @@ public class ImportController {
 		
 		private FXMLLoader main_load;
 		
+		private FeatureData map_data;
+		
 		@FXML
 		public void initialize() {
 			assert(fsRadio != null);
@@ -87,13 +91,14 @@ public class ImportController {
 		public void backEvent(ActionEvent event) throws IOException {
 			backButton.getScene().setRoot((Parent)main_load.load());
 			MainMenuController cntrl = main_load.<MainMenuController>getController();
-			cntrl.initMapStage(mapStage);
+			cntrl.initMapStage(mapStage, map_data);
 		}
 		
 		@FXML 
 		public void importEvent(ActionEvent event) throws IOException {
 			boolean fsImport = searchToggle.getSelectedToggle().equals(fsRadio);
 			ImportedMap map;
+			map_data = new FeatureData();
 			
 			if(fsImport) {
 				map = new ImportFileMap(pathField.getText());
@@ -102,9 +107,9 @@ public class ImportController {
 		        PortalItem portalItem = new PortalItem(portal, idField.getText());
 				map = new ImportPortalMap(portalItem);
 			}
-			
-			//Portal Item -> generateMapData(portalItem);
-			//mapData - get feature attribute maps -> calculate the sci lof rof
+			map.getView().getMap().addDoneLoadingListener(() -> {
+				map_data.retrieveMapData(map);
+			});
 			mapStage = generateMapStage(map.getView());
 			mapStage.show();
 		}

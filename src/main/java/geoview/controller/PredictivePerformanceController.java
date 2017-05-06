@@ -1,7 +1,6 @@
 package geoview.controller;
 
 import java.io.IOException;
-import java.util.function.Consumer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class PredictivePerformanceController {
 	

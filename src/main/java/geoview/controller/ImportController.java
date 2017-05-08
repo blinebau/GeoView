@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -21,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 import com.esri.arcgisruntime.mapping.view.MapView;
 import com.esri.arcgisruntime.portal.Portal;
@@ -28,7 +31,7 @@ import com.esri.arcgisruntime.portal.PortalItem;
 
 public class ImportController {
 	
-		private Stage mapStage;
+		private static Stage mapStage;
 	
 		@FXML
 		private RadioButton fsRadio;
@@ -54,9 +57,9 @@ public class ImportController {
 		@FXML
 		private TextField idField;
 		
-		private FXMLLoader main_load;
+		private FXMLLoader mainLoad;
 		
-		private FeatureData map_data;
+		private FeatureData mapData;
 		
 		@FXML
 		public void initialize() {
@@ -68,7 +71,7 @@ public class ImportController {
 			assert(browseButton != null);
 			assert(idField != null);
 			configureSearchToggleListener();
-			main_load = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
+			mainLoad = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
 		}
 		
 		@FXML
@@ -89,16 +92,33 @@ public class ImportController {
 		
 		@FXML
 		public void backEvent(ActionEvent event) throws IOException {
-			backButton.getScene().setRoot((Parent)main_load.load());
-			MainMenuController cntrl = main_load.<MainMenuController>getController();
-			cntrl.initMapStage(mapStage, map_data);
+			backButton.getScene().setRoot((Parent)mainLoad.load());
+			MainMenuController cntrl = mainLoad.<MainMenuController>getController();
+			
+			cntrl.initMapStage(mapStage, mapData);
 		}
 		
 		@FXML 
 		public void importEvent(ActionEvent event) throws IOException {
+			if(mapStage == null) {
+				importMap();
+			} else {
+				Alert alert = ImportAlert.setAlert(importButton.getScene().getWindow());
+				Optional<ButtonType> result = alert.showAndWait();
+				if(result.get() == ButtonType.OK) {
+					Scene mapScene = mapStage.getScene();
+					MapView view = (MapView) mapScene.getRoot();
+					view.dispose();
+					mapStage.close();
+				}
+				importMap();
+			}
+		}
+		
+		private void importMap() {
 			boolean fsImport = searchToggle.getSelectedToggle().equals(fsRadio);
 			ImportedMap map;
-			map_data = new FeatureData();
+			mapData = new FeatureData();
 			
 			if(fsImport) {
 				map = new ImportFileMap(pathField.getText());
@@ -108,7 +128,7 @@ public class ImportController {
 				map = new ImportPortalMap(portalItem);
 			}
 			map.getView().getMap().addDoneLoadingListener(() -> {
-				map_data.retrieveMapData(map);
+				mapData.retrieveMapData(map);
 			});
 			mapStage = generateMapStage(map.getView());
 			mapStage.show();

@@ -1,27 +1,19 @@
 package geoview.controller;
 
 import java.io.IOException;
-import java.util.Optional;
-
-import com.esri.arcgisruntime.mapping.view.MapView;
 
 import geoview.data.FeatureData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainMenuController {
 	
 	@FXML
-	private Button importMap_Data;
+	private Button importMapData;
 	
 	@FXML
 	private Button sci;
@@ -41,7 +33,7 @@ public class MainMenuController {
 	
 	@FXML
 	public void initialize() {
-		assert(importMap_Data != null);
+		assert(importMapData != null);
 		assert(sci != null);
 		assert(inventory != null);
 		assert(predictivePerformance != null);
@@ -51,27 +43,8 @@ public class MainMenuController {
 	
 	@FXML
 	public void importEvent(ActionEvent event) throws IOException {
-		if(mapStage != null) {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.initOwner(importMap_Data.getScene().getWindow());
-			alert.setResizable(false);
-			alert.initModality(Modality.WINDOW_MODAL);
-			alert.setTitle("GEOVIEW - Import Confirmation");
-			alert.setHeaderText("Confirm New Import");
-			alert.setContentText("Importing new data now will begin a new session, closing the map window. Do you wish to import new data?");
-			Optional<ButtonType> result = alert.showAndWait();
-			if(result.get() == ButtonType.OK) {
-				Scene mapScene = mapStage.getScene();
-				MapView view = (MapView) mapScene.getRoot();
-				view.dispose();
-				mapStage.close();
-				FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
-				importMap_Data.getScene().setRoot((Parent)load.load());
-			}
-		} else {
-			FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
-			importMap_Data.getScene().setRoot((Parent)load.load());
-		}
+		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
+		importMapData.getScene().setRoot((Parent)load.load());
 	}
 	
 	@FXML

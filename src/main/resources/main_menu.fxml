@@ -19,7 +19,7 @@
               <children>
                 <AnchorPane prefHeight="398.0" prefWidth="200.0">
                   <children>
-                    <Button fx:id="importMap_Data" layoutX="26.0" layoutY="271.0" mnemonicParsing="false" onAction="#importEvent" prefWidth="147.0" text="Import Map/Dataset" />
+                    <Button fx:id="importMapData" layoutX="26.0" layoutY="271.0" mnemonicParsing="false" onAction="#importEvent" prefWidth="147.0" text="Import Map/Dataset" />
                     <Button fx:id="sci" layoutX="27.0" layoutY="147.0" mnemonicParsing="false" onAction="#sciEvent" prefWidth="147.0" text="SCI" />
                     <Text layoutX="77.0" layoutY="80.0" scaleX="3.4194283094050855" scaleY="3.3181887658567235" strokeType="OUTSIDE" strokeWidth="0.0" text="GeoView">
                       <font>

@@ -32,22 +32,22 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
 		return featureAttr;
 	}
         
-        private Map<String, Object> setRiskModelValues(Feature feature){
+    private Map<String, Object> setRiskModelValues(Feature feature){
 
-            Map<String, Object> attributes = feature.getAttributes();
+        Map<String, Object> attributes = feature.getAttributes();
 
-            CoFCalculator cofCalculator = new CoFCalculator();
-            LoFCalculator lofCalculator = new LoFCalculator();
+        CoFCalculator cofCalculator = new CoFCalculator();
+        LoFCalculator lofCalculator = new LoFCalculator();
 
-            int cofValue = cofCalculator.calcWeightedCriteriaValues(attributes);
-            int lofValue = lofCalculator.calcWeightedCriteriaValues(attributes);
-            int sciValue = SCICalculator.calculateSCI(cofValue, lofValue);
+        int cofValue = cofCalculator.calcWeightedCriteriaValues(attributes);
+        int lofValue = lofCalculator.calcWeightedCriteriaValues(attributes);
+        int sciValue = SCICalculator.calculateSCI(cofValue, lofValue);
 
-            attributes.replace("COF", cofValue);
-            attributes.replace("LOF", lofValue);
-            attributes.replace("SCI", sciValue);
+        attributes.replace("COF", cofValue);
+        attributes.replace("LOF", lofValue);
+        attributes.replace("SCI", sciValue);
 
-            return attributes;
-        }
+        return attributes;
+    }
 
 }

@@ -1,5 +1,9 @@
 package geoview.data;
 
+import geoview.calculators.CoFCalculator;
+import geoview.calculators.LoFCalculator;
+import geoview.calculators.SCICalculator;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -23,10 +27,27 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
 		Iterator<Feature> feature_it = result.iterator();
 		while(feature_it.hasNext()) {
 			Feature feature = feature_it.next();
-			featureAttr.add(feature.getAttributes());
+			featureAttr.add(setRiskModelValues(feature));
 		}
-		System.out.println(featureAttr.size());
 		return featureAttr;
 	}
+        
+        private Map<String, Object> setRiskModelValues(Feature feature){
+
+            Map<String, Object> attributes = feature.getAttributes();
+
+            CoFCalculator cofCalculator = new CoFCalculator();
+            LoFCalculator lofCalculator = new LoFCalculator();
+
+            int cofValue = cofCalculator.calcWeightedCriteriaValues(attributes);
+            int lofValue = lofCalculator.calcWeightedCriteriaValues(attributes);
+            int sciValue = SCICalculator.calculateSCI(cofValue, lofValue);
+
+            attributes.replace("COF", cofValue);
+            attributes.replace("LOF", lofValue);
+            attributes.replace("SCI", sciValue);
+
+            return attributes;
+        }
 
 }

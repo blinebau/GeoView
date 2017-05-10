@@ -2,6 +2,7 @@ package geoview.controller;
 
 import java.io.IOException;
 
+import geoview.data.FeatureData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 public class SCIController {
 	
@@ -65,6 +67,10 @@ public class SCIController {
 	@FXML
 	private Button back;
 	
+	private FeatureData mapData;
+
+	private Stage mapStage;
+	
 	@FXML
 	public void initialize() {
 		assert(sciFrom != null);
@@ -98,6 +104,12 @@ public class SCIController {
 	private void backEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
 		back.getScene().setRoot((Parent)load.load());
+	}
+	
+	@FXML
+	private void searchEvent(ActionEvent event) {
+		RadioButton selected = (RadioButton) searchToggle.selectedToggleProperty().getValue();
+		search(selected);
 	}
 	
 	private void configureSearchToggleListener() {
@@ -150,5 +162,18 @@ public class SCIController {
 				}
 			}
 		});
+	}
+	
+	private void search(RadioButton selected) {
+		if(selected.equals(sci)) {
+			mapData.queryBySCI(Integer.parseInt(sciFrom.getText()),Integer.parseInt(sciTo.getText()));
+		} else {
+			//defects
+		}
+	}
+	
+	public void initMapData(Stage newMapStage, FeatureData newMapData) {
+		mapStage = newMapStage;
+		mapData = newMapData;
 	}
 }

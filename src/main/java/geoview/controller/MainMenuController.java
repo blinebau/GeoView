@@ -66,7 +66,7 @@ public class MainMenuController {
 		maintenanceScenarios.getScene().setRoot((Parent)load.load());
 	}
 	
-	public void initMapStage(Stage newMapStage, FeatureData newMapData) {
+	public void initMapData(Stage newMapStage, FeatureData newMapData) {
 		mapStage = newMapStage;
 		mapData = newMapData;
 	}

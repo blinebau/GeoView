@@ -7,16 +7,33 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 
 public class PredictivePerformanceController {
+	
+	private enum failureAge {
+		VERY_HIGH, HIGH, MEDIUM, LOW;
+	}
 	
 	@FXML
 	private HBox buttonBox;
 	
 	@FXML
 	private ToggleGroup predictiveToggle;
+	
+	@FXML
+	private RadioButton veryHighFailure;
+	
+	@FXML
+	private RadioButton highFailure;
+	
+	@FXML
+	private RadioButton mediumFailure;
+	
+	@FXML
+	private RadioButton lowFailure;
 	
 	@FXML
 	private Button dataViewButton;
@@ -49,6 +66,7 @@ public class PredictivePerformanceController {
 		assert(exportGraphicsButton != null);
 		assert(backButton != null);
 		assert(findButton != null);
+		assert(predictiveToggle != null);
 		dataViewButton.setDisable(true);
 		printPreviewButton.setDisable(true);
 		exportTableButton.setDisable(true);
@@ -58,12 +76,14 @@ public class PredictivePerformanceController {
 	
 	@FXML
 	public void findEvent(ActionEvent event) {
+		RadioButton selected = (RadioButton) predictiveToggle.getSelectedToggle();
 		if(predictiveToggle.getSelectedToggle() != null) {
 			dataViewButton.setDisable(false);
 			printPreviewButton.setDisable(false);
 			exportTableButton.setDisable(false);
 			printButton.setDisable(false);
 			exportGraphicsButton.setDisable(false);
+			search(selected);
 		}
 	}
 	
@@ -71,6 +91,13 @@ public class PredictivePerformanceController {
 	public void backEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
 		backButton.getScene().setRoot((Parent)load.load());
+	}
+	
+	private void search(RadioButton selected) {
+		String selectName = selected.getId();
+		switch(selectName) {
+		case 
+		}
 	}
 	
 	

@@ -44,6 +44,18 @@ public class FeatureData {
 		}
 	}
 	
+	public void queryBySCI(int fromSCI, int toSCI) {
+		
+	}
+	
+	public void queryByAge(int fromAge, int toAge) {
+		
+	}
+	
+	public void queryMaintenancePlan(int year, String method, int budget) {
+		//call to maintenance plan(year, method, budget, attr_coll);
+	}
+	
 	public ArrayList<Map<String, Object>> getAttr_Coll() {
 		return attr_coll;
 	}

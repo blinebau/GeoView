@@ -95,7 +95,7 @@ public class ImportController {
 			backButton.getScene().setRoot((Parent)mainLoad.load());
 			MainMenuController cntrl = mainLoad.<MainMenuController>getController();
 			
-			cntrl.initMapStage(mapStage, mapData);
+			cntrl.initMapData(mapStage, mapData);
 		}
 		
 		@FXML 
@@ -128,7 +128,7 @@ public class ImportController {
 				map = new ImportPortalMap(portalItem);
 			}
 			map.getView().getMap().addDoneLoadingListener(() -> {
-				mapData.retrieveMapData(map);
+				mapData.retrieveMapData(map); //Change to boolean value 
 			});
 			mapStage = generateMapStage(map.getView());
 			mapStage.show();

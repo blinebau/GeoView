@@ -37,7 +37,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Text>
-                              <RadioButton fx:id="pipeFailure1" mnemonicParsing="false" text="Pipe Failures Within 0-12 Months">
+                              <RadioButton fx:id="veryHighFailure" mnemonicParsing="false" text="Pipe Failures Within 0-12 Months">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
@@ -45,17 +45,17 @@
                                     <ToggleGroup fx:id="predictiveToggle" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="pipeFailure2" mnemonicParsing="false" text="Pipe Failures Within 1-5 Years" toggleGroup="$predictiveToggle">
+                              <RadioButton fx:id="highFailure" mnemonicParsing="false" text="Pipe Failures Within 1-5 Years" toggleGroup="$predictiveToggle">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="pipeFailure3" mnemonicParsing="false" text="Pipe Failures Within 5-10 Years" toggleGroup="$predictiveToggle">
+                              <RadioButton fx:id="mediumFailure" mnemonicParsing="false" text="Pipe Failures Within 5-10 Years" toggleGroup="$predictiveToggle">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton fx:id="pipeFailure4" mnemonicParsing="false" text="Pipe Failures After 10 Years" toggleGroup="$predictiveToggle">
+                              <RadioButton fx:id="lowFailure" mnemonicParsing="false" text="Pipe Failures After 10 Years" toggleGroup="$predictiveToggle">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>

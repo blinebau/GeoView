@@ -20,7 +20,7 @@ public class FeatureData {
 		attr_coll = new ArrayList<>();
 	}
 	
-	public void retrieveMapData(ImportedMap map) {
+	public void retrieveMapData() {
 		ServiceFeatureTable service_table = new ServiceFeatureTable("http://services7.arcgis.com/DQPcd87LglSVJI8c/arcgis/rest/services/Sewer_Test_Map/FeatureServer/1");
 		service_table.setFeatureRequestMode(FeatureRequestMode.MANUAL_CACHE);
 		QueryParameters query = new QueryParameters();

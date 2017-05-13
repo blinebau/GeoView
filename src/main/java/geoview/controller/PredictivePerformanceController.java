@@ -13,10 +13,6 @@ import javafx.scene.layout.HBox;
 
 public class PredictivePerformanceController {
 	
-	private enum failureAge {
-		VERY_HIGH, HIGH, MEDIUM, LOW;
-	}
-	
 	@FXML
 	private HBox buttonBox;
 	
@@ -96,7 +92,17 @@ public class PredictivePerformanceController {
 	private void search(RadioButton selected) {
 		String selectName = selected.getId();
 		switch(selectName) {
-		case 
+			case "veryHighFailure": {
+			}
+			case "highFailure": {
+				
+			}
+			case "mediumFailure": {
+				
+			}
+			case "lowFailure": {
+				
+			}
 		}
 	}
 	

@@ -101,7 +101,7 @@ public class ImportController {
 		@FXML 
 		public void importEvent(ActionEvent event) throws IOException {
 			if(mapStage == null) {
-				importMap();
+				importMapData();
 			} else {
 				Alert alert = ImportAlert.setAlert(importButton.getScene().getWindow());
 				Optional<ButtonType> result = alert.showAndWait();
@@ -111,14 +111,14 @@ public class ImportController {
 					view.dispose();
 					mapStage.close();
 				}
-				importMap();
+				importMapData();
+				importFeatureData();
 			}
 		}
 		
-		private void importMap() {
+		private void importMapData() {
 			boolean fsImport = searchToggle.getSelectedToggle().equals(fsRadio);
 			ImportedMap map;
-			mapData = new FeatureData();
 			
 			if(fsImport) {
 				map = new ImportFileMap(pathField.getText());
@@ -127,11 +127,13 @@ public class ImportController {
 		        PortalItem portalItem = new PortalItem(portal, idField.getText());
 				map = new ImportPortalMap(portalItem);
 			}
-			map.getView().getMap().addDoneLoadingListener(() -> {
-				mapData.retrieveMapData(map); //Change to boolean value 
-			});
 			mapStage = generateMapStage(map.getView());
 			mapStage.show();
+		}
+		
+		private void importFeatureData() {
+			mapData = new FeatureData();
+			mapData.retrieveMapData();
 		}
 		
 		private String getFilePath() throws IOException {

@@ -4,7 +4,7 @@
   <artifactId>geoview</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
-    <repositories>
+  <repositories>
     <repository>
       <id>arcgis</id>
       <url>https://esri.bintray.com/arcgis</url>
@@ -19,11 +19,47 @@
   </pluginRepositories>
 
   <dependencies>
+	<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-simple</artifactId>
+	    <version>1.6.2</version>
+	</dependency>
+	
     <dependency>
       <groupId>com.esri.arcgisruntime</groupId>
       <artifactId>arcgis-java</artifactId>
       <version>100.0.0</version>
     </dependency>
+    
+        <!-- always needed -->
+    <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>kernel</artifactId>
+        <version>7.0.2</version>
+    </dependency>
+
+    <!-- always needed -->
+    <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>io</artifactId>
+        <version>7.0.2</version>
+    </dependency>
+
+    <!-- always needed -->
+    <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>layout</artifactId>
+        <version>7.0.2</version>
+    </dependency>
+
+    <!-- only needed for PDF/A -->
+    <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>pdfa</artifactId>
+        <version>7.0.2</version>
+    </dependency>
+    
   </dependencies>
 
   <build>

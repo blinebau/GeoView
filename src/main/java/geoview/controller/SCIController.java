@@ -112,6 +112,14 @@ public class SCIController {
 		search(selected);
 	}
 	
+	private void search(RadioButton selected) {
+		if(selected.equals(sci)) {		
+			mapData.queryBySCI(Integer.parseInt(sciFrom.getText()),Integer.parseInt(sciTo.getText()));
+		} else {
+			//defects
+		}
+	}
+	
 	private void configureSearchToggleListener() {
 		searchToggle.selectedToggleProperty().addListener((observed, oldVal, newVal) -> {
 			if(newVal.equals(sci) || newVal.equals(icg)) {
@@ -162,14 +170,6 @@ public class SCIController {
 				}
 			}
 		});
-	}
-	
-	private void search(RadioButton selected) {
-		if(selected.equals(sci)) {
-			mapData.queryBySCI(Integer.parseInt(sciFrom.getText()),Integer.parseInt(sciTo.getText()));
-		} else {
-			//defects
-		}
 	}
 	
 	public void initMapData(Stage newMapStage, FeatureData newMapData) {

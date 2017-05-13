@@ -5,7 +5,7 @@ import geoview.data.FeatureData;
 import geoview.importers.ImportFileMap;
 import geoview.importers.ImportPortalMap;
 import geoview.importers.ImportedMap;
-
+import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,7 +94,6 @@ public class ImportController {
 		public void backEvent(ActionEvent event) throws IOException {
 			backButton.getScene().setRoot((Parent)mainLoad.load());
 			MainMenuController cntrl = mainLoad.<MainMenuController>getController();
-			
 			cntrl.initMapData(mapStage, mapData);
 		}
 		
@@ -102,6 +101,7 @@ public class ImportController {
 		public void importEvent(ActionEvent event) throws IOException {
 			if(mapStage == null) {
 				importMapData();
+				importFeatureData();
 			} else {
 				Alert alert = ImportAlert.setAlert(importButton.getScene().getWindow());
 				Optional<ButtonType> result = alert.showAndWait();
@@ -110,9 +110,9 @@ public class ImportController {
 					MapView view = (MapView) mapScene.getRoot();
 					view.dispose();
 					mapStage.close();
+					importMapData();
+					importFeatureData();
 				}
-				importMapData();
-				importFeatureData();
 			}
 		}
 		
@@ -150,6 +150,7 @@ public class ImportController {
 				mapStage.setResizable(false);
 				mapStage.setOnCloseRequest((event) -> {
 					view.dispose();
+					ImportController.mapStage = null;
 				});
 				Scene scene = new Scene(view, 600, 400);
 				mapStage.setScene(scene);

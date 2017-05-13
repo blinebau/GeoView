@@ -10,14 +10,14 @@ import com.esri.arcgisruntime.data.QueryParameters;
 import com.esri.arcgisruntime.data.ServiceFeatureTable;
 import com.esri.arcgisruntime.data.ServiceFeatureTable.FeatureRequestMode;
 
-import geoview.importers.ImportedMap;
+import geoview.exporters.ExportTask;
 
 public class FeatureData {
 	
-	private ArrayList<Map<String, Object>> attr_coll;
+	private ArrayList<Map<String, Object>> attrColl;
 	
 	public FeatureData() {
-		attr_coll = new ArrayList<>();
+		attrColl = new ArrayList<>();
 	}
 	
 	public void retrieveMapData() {
@@ -31,12 +31,12 @@ public class FeatureData {
 		try {
 			FeatureQueryResult result = query_result.get();
 			DataTask data_task = new DataTask(result);
+			data_task.setOnSucceeded(t -> { 
+				attrColl = data_task.getValue(); 
+			});
 			Thread th = new Thread(data_task);
 			th.setDaemon(true);
 			th.start();
-				data_task.setOnSucceeded(t -> { 
-				attr_coll = data_task.getValue(); 
-			});
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
@@ -45,18 +45,28 @@ public class FeatureData {
 	}
 	
 	public void queryBySCI(int fromSCI, int toSCI) {
-		
+		QueryTask queryTask = new QueryTask(this.attrColl, fromSCI, toSCI, true);
+		queryTask.setOnSucceeded(t -> {
+			ExportTask exportTask = new ExportTask(queryTask.getValue());
+			Thread th = new Thread(exportTask);
+			th.setDaemon(true);
+			th.start();
+		});
+		Thread th = new Thread(queryTask);
+		th.setDaemon(true);
+		th.start();
 	}
 	
-	public void queryByAge(int fromAge, int toAge) {
+	public void queryByPredictiveFailure(int fromAge, int toAge) {
 		
 	}
 	
 	public void queryMaintenancePlan(int year, String method, int budget) {
-		//call to maintenance plan(year, method, budget, attr_coll);
+		//call to maintenance plan(year, method, budget, attrColl);
+		//found in calculators
 	}
 	
-	public ArrayList<Map<String, Object>> getAttr_Coll() {
-		return attr_coll;
+	public ArrayList<Map<String, Object>> getAttrColl() {
+		return attrColl;
 	}
 }

@@ -51,6 +51,8 @@ public class MainMenuController {
 	public void sciEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("sci.fxml"));
 		sci.getScene().setRoot((Parent)load.load());
+		SCIController cntrl = load.<SCIController>getController();
+		cntrl.initMapData(mapStage, mapData);
 	}
 	
 	

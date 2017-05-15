@@ -12,29 +12,33 @@ public abstract class RiskModelCalculator {
         protected String riskTag;
         protected String[] criteriaTags;
         protected double[] weights;
-        protected double weightedCriteriaScore = 0.0;
     
     
     public int calcWeightedCriteriaValues(Map<String, Object> attributes){
         int usedTags = 0;
-        try{
-            for(int tagIndex = 0; tagIndex < criteriaTags.length; tagIndex++){
-                    String tag = criteriaTags[tagIndex];
-                    if(attributes.get(tag) != null){
-                        double tagValue = new Double(attributes.get(tag).toString());
-                        weightedCriteriaScore += tagValue * weights[tagIndex];
-                        usedTags++;
-                    }
-            }
-        }catch(Exception e){
-            System.err.println(e);
-            System.out.println("Determine whether to catch or throw.../nthis error may possibly be displayed when user attempts to load map that isn't correct format");
+        double weightedCriteriaScore =  0.0;
+        
+        for(int tagIndex = 0; tagIndex < criteriaTags.length; tagIndex++){
+                String tag = criteriaTags[tagIndex];
+                if(attributes.get(tag) != null){
+                    double tagValue = new Double(attributes.get(tag).toString());
+                    weightedCriteriaScore += tagValue * weights[tagIndex];
+                    usedTags++;
+                }
         }
-        return (int) weightedCriteriaScore/usedTags;
+        //Check for division by 0.
+        if(!(usedTags < 1)){
+            return (int) weightedCriteriaScore/usedTags;
+        }
+        return 0; //Or throw exception... Determine whether completely blank input should just calculate to 0.
     }
     
     public void changeWeight(int index, double value){
         weights[index] = value;
+    }
+    
+    public String[] getCriteriaTags(){
+        return criteriaTags;
     }
     
     

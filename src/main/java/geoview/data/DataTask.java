@@ -3,41 +3,86 @@ package geoview.data;
 import geoview.calculators.CoFCalculator;
 import geoview.calculators.LoFCalculator;
 import geoview.calculators.SCICalculator;
+import geoview.exceptions.SchemaException;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Collections;
+import java.util.Comparator;
 
 import com.esri.arcgisruntime.data.Feature;
 import com.esri.arcgisruntime.data.FeatureQueryResult;
+import com.esri.arcgisruntime.data.Field;
 
 import javafx.concurrent.Task;
 
 public class DataTask extends Task<ArrayList<Map<String, Object>>> {
 	
-	private FeatureQueryResult result;
-	
-	public DataTask(FeatureQueryResult newResult) {
-		result = newResult;
-	}
+    private FeatureQueryResult result;
+    private CoFCalculator cofCalculator;
+    private LoFCalculator lofCalculator;
 
-	@Override
-	protected ArrayList<Map<String, Object>> call() throws Exception {
-		ArrayList<Map<String, Object>> featureAttr = new ArrayList<>();
-		Iterator<Feature> feature_it = result.iterator();
-		while(feature_it.hasNext()) {
-			Feature feature = feature_it.next();
-			featureAttr.add(setRiskModelValues(feature));
-		}
-		return featureAttr;
-	}
+    public DataTask(FeatureQueryResult newResult) {
+            result = newResult;
+            cofCalculator = new CoFCalculator();
+            lofCalculator = new LoFCalculator();
+    }
+
+    @Override
+    protected ArrayList<Map<String, Object>> call() throws SchemaException {
+        boolean firstFeature = true;
+        ArrayList<Map<String, Object>> featureAttr = new ArrayList<>();
+        Iterator<Feature> feature_it = result.iterator();
+        while(feature_it.hasNext()) {
+            Feature feature = feature_it.next();
+            if (firstFeature){
+                checkSchema(feature);
+                firstFeature = false;
+            }
+            featureAttr.add(setRiskModelValues(feature));
+        }
+        sortBySCI(featureAttr);
+        
+        return featureAttr;
+    }
+    
+    
+    private boolean checkSchema(Feature feature) throws SchemaException{
+        ArrayList<String> schemaTags = new ArrayList<>();
+        boolean schemaCorrect = true;
+        
+        for(String tag : cofCalculator.getCriteriaTags()){
+            if(!feature.getAttributes().containsKey(tag)){
+                schemaTags.add(tag);
+                schemaCorrect = false;
+            }
+        }
+        for(String tag : lofCalculator.getCriteriaTags()){
+            if(!feature.getAttributes().containsKey(tag)){
+                schemaTags.add(tag);
+                schemaCorrect = false;
+            }
+        }
+        if(!schemaCorrect){
+            throw new SchemaException(schemaTags, "Error: Wrong Schema"); //FIGURE OUT WHERE/HOW TO HANDLE
+        }
+        return schemaCorrect;
+    }
+    
+    private void sortBySCI(ArrayList<Map<String, Object>> features){
+        Collections.sort(features, new Comparator<Map<String, Object>>(){
+            @Override
+            public int compare(Map<String, Object> s1, Map<String, Object> s2){
+                return Integer.valueOf(s1.get("SCI").toString()).compareTo(Integer.valueOf(s2.get("SCI").toString()));
+            }
+        });
+    }
         
     private Map<String, Object> setRiskModelValues(Feature feature){
 
         Map<String, Object> attributes = feature.getAttributes();
-
-        CoFCalculator cofCalculator = new CoFCalculator();
-        LoFCalculator lofCalculator = new LoFCalculator();
 
         int cofValue = cofCalculator.calcWeightedCriteriaValues(attributes);
         int lofValue = lofCalculator.calcWeightedCriteriaValues(attributes);
@@ -49,5 +94,7 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
 
         return attributes;
     }
+    
+    
 
 }

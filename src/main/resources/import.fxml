@@ -15,106 +15,49 @@
       <children>
         <AnchorPane minHeight="74.0" prefHeight="74.0" prefWidth="600.0">
           <children>
-            <Text layoutX="268.0" layoutY="42.0" scaleX="2.0309296193041466" scaleY="2.04868386848594" smooth="true" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Import Map" />
+            <Text layoutX="47.0" layoutY="41.0" scaleX="2.0309296193041466" scaleY="2.04868386848594" smooth="true" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Import Map" />
           </children>
         </AnchorPane>
-        <GridPane>
+        <AnchorPane prefHeight="323.0" prefWidth="600.0">
           <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-              <children>
-                <GridPane prefHeight="30.0" prefWidth="421.0">
-                  <children>
-                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                      </children>
-                    </HBox>
-                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                      </children>
-                    </HBox>
-                  </children>
-                  <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  </columnConstraints>
-                  <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  </rowConstraints>
-                </GridPane>
-              </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-              <children>
-                <GridPane prefHeight="30.0" prefWidth="421.0">
-                  <children>
-                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                      </children>
-                    </HBox>
-                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                      </children>
-                    </HBox>
-                  </children>
-                  <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  </columnConstraints>
-                  <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  </rowConstraints>
-                </GridPane>
-              </children>
-            </HBox>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                     <children>
-                        <Text layoutX="34.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose file transfer type:" />
-                     </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                     <children>
-                <RadioButton fx:id="fsRadio" layoutX="51.0" layoutY="6.0" mnemonicParsing="false" selected="true" text="Import from File System">
-                  <toggleGroup>
-                    <ToggleGroup fx:id="searchToggle" />
-                  </toggleGroup>
-                </RadioButton>
-                     </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                     <children>
-                <RadioButton fx:id="webRadio" layoutX="51.0" layoutY="6.0" mnemonicParsing="false" text="Import from Web" toggleGroup="$searchToggle" />
-                     </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-          </children>
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="158.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.0" minWidth="10.0" prefWidth="442.0" />
-          </columnConstraints>
-          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          </rowConstraints>
-        </GridPane>
-        <AnchorPane prefHeight="194.0" prefWidth="600.0">
-          <children>
-            <GridPane layoutX="41.0" layoutY="40.0" prefWidth="518.0">
+              <GridPane layoutX="14.0" layoutY="30.0">
+                <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <Text layoutX="34.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose import method:" />
+                           </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <children>
+                      <RadioButton fx:id="fsRadio" layoutX="51.0" layoutY="6.0" mnemonicParsing="false" selected="true" text="Import from File System">
+                        <toggleGroup>
+                          <ToggleGroup fx:id="searchToggle" />
+                        </toggleGroup>
+                      </RadioButton>
+                           </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                           <children>
+                      <RadioButton fx:id="webRadio" layoutX="51.0" layoutY="6.0" mnemonicParsing="false" text="Import from Web" toggleGroup="$searchToggle" />
+                           </children>
+                  </AnchorPane>
+                </children>
+                <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="158.0" />
+                </columnConstraints>
+                <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+              </GridPane>
+            <GridPane layoutX="74.0" layoutY="150.0" prefWidth="518.0">
               <children>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Text layoutX="23.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Path:" />
                               <TextField fx:id="pathField" layoutX="83.0" layoutY="2.0" prefHeight="25.0" prefWidth="274.0" />
-                           </children></AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                           <children>
-                    <Button fx:id="browseButton" layoutX="105.0" layoutY="8.0" mnemonicParsing="false" onAction="#browseEvent" prefHeight="25.0" prefWidth="174.0" text="Browse" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="8.0" />
                            </children></AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
@@ -125,27 +68,25 @@
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="10.0" prefWidth="257.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="261.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <GridPane layoutX="41.0" layoutY="100.0" prefWidth="524.0">
+            <GridPane layoutX="90.0" layoutY="237.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="420.0">
               <children>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                            <children>
-                    <Button fx:id="importButton" onAction="#importEvent" layoutX="12.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="174.0" text="Import" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="10.0" />
-                           </children></AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Button fx:id="importButton" layoutX="12.0" layoutY="10.0" mnemonicParsing="false" onAction="#importEvent" prefHeight="30.0" prefWidth="174.0" text="Import" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="10.0" />
+                           </children>
+                        </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0">
                            <children>
-                    <Button fx:id="backButton" layoutX="-13.0" layoutY="10.0" mnemonicParsing="false" onAction="#backEvent" prefHeight="30.0" prefWidth="175.0" text="Back" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="-13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
-                           </children></AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <Button fx:id="backButton" layoutX="-13.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#backEvent" prefHeight="30.0" prefWidth="175.0" text="Back" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="-13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
+                           </children>
+                        </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -153,7 +94,6 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>

@@ -19,16 +19,15 @@
               <children>
                 <AnchorPane prefHeight="398.0" prefWidth="200.0">
                   <children>
-                    <Button fx:id="importMapData" layoutX="26.0" layoutY="271.0" mnemonicParsing="false" onAction="#importEvent" prefWidth="147.0" text="Import Map/Dataset" />
-                    <Button fx:id="sci" layoutX="27.0" layoutY="147.0" mnemonicParsing="false" onAction="#sciEvent" prefWidth="147.0" text="SCI" />
                     <Text layoutX="77.0" layoutY="80.0" scaleX="3.4194283094050855" scaleY="3.3181887658567235" strokeType="OUTSIDE" strokeWidth="0.0" text="GeoView">
                       <font>
                         <Font name="Calibri Italic" size="12.0" />
                       </font>
                     </Text>
-                    <Button fx:id="inventory" layoutX="27.0" layoutY="178.0" mnemonicParsing="false" prefWidth="147.0" text="Inventory" />
-                    <Button fx:id="predictivePerformance" layoutX="27.0" layoutY="209.0" mnemonicParsing="false" onAction="#predictivePerformanceEvent" prefWidth="147.0" text="Predictive Performance" />
-                    <Button fx:id="maintenanceScenarios" layoutX="27.0" layoutY="240.0" mnemonicParsing="false" onAction="#maintenanceScenariosEvent" prefWidth="147.0" text="Maintenance Scenarios" />
+                    <Button fx:id="importMapData" layoutX="27.0" layoutY="228.0" mnemonicParsing="false" onAction="#importEvent" prefWidth="147.0" text="Import Map/Dataset" />
+                    <Button fx:id="sci" layoutX="27.0" layoutY="127.0" mnemonicParsing="false" onAction="#sciEvent" prefWidth="147.0" text="SCI" />
+                    <Button fx:id="predictivePerformance" layoutX="27.0" layoutY="161.0" mnemonicParsing="false" onAction="#predictivePerformanceEvent" prefWidth="147.0" text="Predictive Performance" />
+                    <Button fx:id="maintenanceScenarios" layoutX="27.0" layoutY="197.0" mnemonicParsing="false" onAction="#maintenanceScenariosEvent" prefWidth="147.0" text="Maintenance Scenarios" />
                   </children>
                 </AnchorPane>
               </children>

@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -17,9 +18,6 @@ public class MainMenuController {
 	
 	@FXML
 	private Button sci;
-	
-	@FXML
-	private Button inventory;
 	
 	@FXML
 	private Button predictivePerformance;
@@ -35,16 +33,20 @@ public class MainMenuController {
 	public void initialize() {
 		assert(importMapData != null);
 		assert(sci != null);
-		assert(inventory != null);
 		assert(predictivePerformance != null);
 		assert(maintenanceScenarios != null);
-		inventory.setDisable(true);
 	}
 	
 	@FXML
 	public void importEvent(ActionEvent event) throws IOException {
-		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
-		importMapData.getScene().setRoot((Parent)load.load());
+/*		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
+		importMapData.getScene().setRoot((Parent)load.load());*/
+		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import_export.fxml"));
+		//importMapData.getScene().setRoot((Parent)load.load());
+		Stage importPopout = new Stage();
+		Scene importScene = new Scene((Parent)load.load());
+		importPopout.setScene(importScene);
+		importPopout.show();
 	}
 	
 	@FXML

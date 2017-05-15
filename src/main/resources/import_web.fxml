@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color 0xffec98ff?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geoview.controller.Import_ExportController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geoview.controller.ImportController">
   <children>
     <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -71,23 +71,11 @@
                 </GridPane>
               </children>
             </HBox>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                     <children>
-                        <Text layoutX="34.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose file transfer type:" />
-                     </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                     <children>
-                <RadioButton fx:id="fsRadio" layoutX="51.0" layoutY="6.0" mnemonicParsing="false" selected="true" text="Import from File System">
-                  <toggleGroup>
-                    <ToggleGroup fx:id="searchToggle" />
-                  </toggleGroup>
-                </RadioButton>
-                     </children>
-            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
                      <children>
-                <RadioButton fx:id="webRadio" layoutX="51.0" layoutY="6.0" mnemonicParsing="false" text="Import from Web" toggleGroup="$searchToggle" />
+                        <Text layoutX="48.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input portal Id:" />
                      </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -110,7 +98,7 @@
               <children>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="nextButton" layoutX="6.0" layoutY="1.0" mnemonicParsing="false" onAction="#nextEvent" prefHeight="30.0" prefWidth="120.0" text="Next &gt;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-1.0" />
+                              <Button fx:id="backButton1" disable="true" layoutX="6.0" layoutY="1.0" mnemonicParsing="false" onAction="#backEvent" prefHeight="30.0" prefWidth="120.0" text="Next &gt;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-1.0" />
                            </children></AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0">
                            <children>
@@ -118,11 +106,11 @@
                            </children></AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                            <children>
-                    <Button fx:id="importButton" disable="true" layoutX="8.0" layoutY="1.0" mnemonicParsing="false" onAction="#importEvent" prefHeight="30.0" prefWidth="120.0" text="Finish" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-1.0" />
+                    <Button fx:id="importButton" layoutX="8.0" layoutY="1.0" mnemonicParsing="false" onAction="#importEvent" prefHeight="30.0" prefWidth="120.0" text="Finish" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-1.0" />
                            </children></AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
                            <children>
-                              <Button fx:id="cancelButton" layoutX="9.0" layoutY="-3.0" mnemonicParsing="false" onAction="#backEvent" prefHeight="30.0" prefWidth="118.0" text="Cancel" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-1.0" />
+                              <Button fx:id="backButton2" layoutX="9.0" layoutY="-3.0" mnemonicParsing="false" onAction="#backEvent" prefHeight="30.0" prefWidth="118.0" text="Cancel" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-1.0" />
                            </children>
                         </AnchorPane>
               </children>
@@ -136,6 +124,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
+                  <Text layoutX="48.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Portal Id:" />
+                  <TextField fx:id="idField" layoutX="108.0" layoutY="2.0" prefHeight="25.0" prefWidth="274.0" />
           </children>
                <VBox.margin>
                   <Insets />

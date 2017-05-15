@@ -1,12 +1,5 @@
 package geoview.calculators;
 
-import geoview.calculators.CoFCalculator;
-import geoview.calculators.LoFCalculator;
-
-import java.util.Map;
-
-import com.esri.arcgisruntime.data.Feature;
-
 
 public class SCICalculator {
     private static double cofWeight = 1.0;

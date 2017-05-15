@@ -5,7 +5,6 @@ import geoview.calculators.LoFCalculator;
 import geoview.calculators.SCICalculator;
 import geoview.exceptions.SchemaException;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -14,7 +13,6 @@ import java.util.Comparator;
 
 import com.esri.arcgisruntime.data.Feature;
 import com.esri.arcgisruntime.data.FeatureQueryResult;
-import com.esri.arcgisruntime.data.Field;
 
 import javafx.concurrent.Task;
 
@@ -48,7 +46,7 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
         return featureAttr;
     }
     
-    
+    //Check to see if each criteria tag (CCTV, GRIT, etc.) is included in the uploaded map data.
     private boolean checkSchema(Feature feature) throws SchemaException{
         ArrayList<String> schemaTags = new ArrayList<>();
         boolean schemaCorrect = true;
@@ -80,6 +78,7 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
         });
     }
         
+    //calculates and sets SCI/COF/LOF values.
     private Map<String, Object> setRiskModelValues(Feature feature){
 
         Map<String, Object> attributes = feature.getAttributes();

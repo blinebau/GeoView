@@ -1,14 +1,12 @@
 package geoview.calculators;
-import java.util.ArrayList;
 import java.util.Map;
 /*
-    This class and it's subclasses will be utilized when the data sheet is uploaded into the program.
+    This class and it's subclasses will be utilized when the map data is uploaded into the program.
     Its purpose is to gather all various criteria for forming LoF and CoF, and using this criteria to calculate the LoF and CoF, for each pipe.
 */
 
 public abstract class RiskModelCalculator {
         
-        //private DataSheetManager data;
         protected String riskTag;
         protected String[] criteriaTags;
         protected double[] weights;

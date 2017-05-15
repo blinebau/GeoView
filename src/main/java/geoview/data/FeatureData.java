@@ -44,8 +44,13 @@ public class FeatureData {
 		}
 	}
 	
-	public void queryBySCI(int fromSCI, int toSCI) {
-		QueryTask queryTask = new QueryTask(this.attrColl, fromSCI, toSCI, true);
+	public void queryMaintenancePlan(int year, String method, int budget) {
+		//call to maintenance plan(year, method, budget, attrColl);
+		//found in calculators
+	}
+	
+	public void initiateRangeQueryTask(int lower, int higher, boolean queryType) {
+		QueryTask queryTask = new QueryTask(this.attrColl, lower, higher, queryType);
 		queryTask.setOnSucceeded(t -> {
 			ExportTask exportTask = new ExportTask(queryTask.getValue());
 			Thread th = new Thread(exportTask);
@@ -55,18 +60,5 @@ public class FeatureData {
 		Thread th = new Thread(queryTask);
 		th.setDaemon(true);
 		th.start();
-	}
-	
-	public void queryByPredictiveFailure(int fromAge, int toAge) {
-		
-	}
-	
-	public void queryMaintenancePlan(int year, String method, int budget) {
-		//call to maintenance plan(year, method, budget, attrColl);
-		//found in calculators
-	}
-	
-	public ArrayList<Map<String, Object>> getAttrColl() {
-		return attrColl;
 	}
 }

@@ -4,12 +4,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -24,7 +21,7 @@ public class ExportTask extends Task<Void> {
 	
 	private ArrayList<Map<String, Object>> attrColl;
 	
-	private LocalDateTime currentTime = LocalDateTime.now();
+	//private LocalDateTime currentTime = LocalDateTime.now();
 	
 	private final String pdfPath = "./src/main/resources/export1.pdf";
 /*	private final String pdfPath = "./src/main/resources/export-" + currentTime.toLocalDate() + "@" + currentTime.getHour() + "-" + 

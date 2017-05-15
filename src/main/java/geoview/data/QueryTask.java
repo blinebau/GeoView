@@ -47,6 +47,9 @@ public class QueryTask extends Task<ArrayList<Map<String, Object>>> {
 	
 	private ArrayList<Map<String, Object>> searchByPredictiveFailure() {
 		ArrayList<Map<String, Object>> resultAttr = new ArrayList<>();
+		for(Map<String, Object> attrMap : attrColl) {
+			//Predictive Failure Value
+		}
 		return resultAttr;
 	}
 

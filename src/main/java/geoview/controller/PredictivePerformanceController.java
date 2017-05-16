@@ -16,9 +16,6 @@ import javafx.stage.Stage;
 public class PredictivePerformanceController {
 	
 	@FXML
-	private HBox buttonBox;
-	
-	@FXML
 	private ToggleGroup predictiveToggle;
 	
 	@FXML
@@ -34,21 +31,6 @@ public class PredictivePerformanceController {
 	private RadioButton lowFailure;
 	
 	@FXML
-	private Button dataViewButton;
-	
-	@FXML
-	private Button printPreviewButton;
-	
-	@FXML
-	private Button exportTableButton;
-	
-	@FXML
-	private Button printButton;
-	
-	@FXML
-	private Button exportGraphicsButton;
-	
-	@FXML
 	private Button backButton;
 	
 	@FXML
@@ -60,31 +42,15 @@ public class PredictivePerformanceController {
 	
 	@FXML
 	public void initialize() {
-		assert(buttonBox != null);
-		assert(dataViewButton != null);
-		assert(printPreviewButton != null);
-		assert(exportTableButton != null);
-		assert(printButton != null);
-		assert(exportGraphicsButton != null);
 		assert(backButton != null);
 		assert(findButton != null);
 		assert(predictiveToggle != null);
-		dataViewButton.setDisable(true);
-		printPreviewButton.setDisable(true);
-		exportTableButton.setDisable(true);
-		printButton.setDisable(true);
-		exportGraphicsButton.setDisable(true);
 	}
 	
 	@FXML
 	public void findEvent(ActionEvent event) {
 		RadioButton selected = (RadioButton) predictiveToggle.getSelectedToggle();
 		if(predictiveToggle.getSelectedToggle() != null) {
-			dataViewButton.setDisable(false);
-			printPreviewButton.setDisable(false);
-			exportTableButton.setDisable(false);
-			printButton.setDisable(false);
-			exportGraphicsButton.setDisable(false);
 			search(selected);
 		}
 	}

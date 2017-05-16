@@ -39,14 +39,8 @@ public class MainMenuController {
 	
 	@FXML
 	public void importEvent(ActionEvent event) throws IOException {
-/*		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
-		importMapData.getScene().setRoot((Parent)load.load());*/
-		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import_export.fxml"));
-		//importMapData.getScene().setRoot((Parent)load.load());
-		Stage importPopout = new Stage();
-		Scene importScene = new Scene((Parent)load.load());
-		importPopout.setScene(importScene);
-		importPopout.show();
+		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("import.fxml"));
+		importMapData.getScene().setRoot((Parent)load.load());
 	}
 	
 	@FXML

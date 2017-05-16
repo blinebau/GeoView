@@ -39,25 +39,7 @@ public class MaintenanceScenariosController {
 	private Button calculate;
 	
 	@FXML
-	private Button exportGraphics;
-	
-	@FXML
-	private Button printPreview;
-	
-	@FXML
-	private Button exportTable;
-	
-	@FXML
-	private Button dataView;
-	
-	@FXML
-	private Button print;
-	
-	@FXML
 	private Button back;
-	
-	@FXML
-	private Button main;
 	
 	@FXML
 	public void initialize() {
@@ -68,26 +50,14 @@ public class MaintenanceScenariosController {
 		assert(trenchlessRehabChoiceBox != null);
 		assert(budget != null);
 		assert(calculate != null);
-		assert(exportGraphics != null);
-		assert(printPreview != null);
-		assert(exportTable != null);
-		assert(dataView != null);
-		assert(print != null);
 		assert(back != null);
-		assert(main != null);
 		
 		pipeReplacementRadio.setDisable(true);
 		pipeReplacementChoiceBox.setDisable(true);
 		trenchlessRehabRadio.setDisable(true);
 		trenchlessRehabChoiceBox.setDisable(true);
 		calculate.setDisable(true);
-		exportGraphics.setDisable(true);
-		exportTable.setDisable(true);
-		printPreview.setDisable(true);
-		dataView.setDisable(true);
-		print.setDisable(true);
 		budget.setDisable(true);
-		main.setDisable(true);
 		
 		//configureRadioToggleListener();
 		configureChoiceBoxListeners();

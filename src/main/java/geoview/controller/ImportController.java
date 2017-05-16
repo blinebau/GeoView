@@ -46,9 +46,6 @@ public class ImportController {
 		private Button importButton;
 		
 		@FXML
-		private Button browseButton;
-		
-		@FXML
 		private Button backButton;
 		
 		@FXML
@@ -68,7 +65,6 @@ public class ImportController {
 			assert(backButton != null);
 			assert(importButton != null);
 			assert(pathField != null);
-			assert(browseButton != null);
 			assert(idField != null);
 			configureSearchToggleListener();
 			mainLoad = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));

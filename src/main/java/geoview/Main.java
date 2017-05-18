@@ -24,7 +24,7 @@ public class Main extends Application {
 			Scene menuScene = new Scene(root);
 			primaryStage.setResizable(false);
 			primaryStage.setScene(menuScene);
-			primaryStage.getIcons().add(new Image("/geoview_logo_temp.png"));
+			primaryStage.getIcons().add(new Image("/window_icon.png"));
 			primaryStage.setTitle("GEOVIEW");
 			primaryStage.setOnCloseRequest((event) -> {
 				Platform.exit();

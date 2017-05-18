@@ -73,7 +73,7 @@ public class SCIController {
 	
 	private void search(RadioButton selected) {
 		if(selected.equals(sci)) {		
-			mapData.initiateRangeQueryTask(Integer.parseInt(sciFrom.getText()),Integer.parseInt(sciTo.getText()), true);
+			mapData.initiateRangeQueryTask(Integer.parseInt(sciFrom.getText()),Integer.parseInt(sciTo.getText()), "SCI");
 		} else {
 			//defects
 		}

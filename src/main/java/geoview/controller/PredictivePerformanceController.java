@@ -67,24 +67,25 @@ public class PredictivePerformanceController {
 		int highFailurePeriod = 0;
 		switch(selectName) {
 			case "veryHighFailure": {
-				highFailurePeriod = 1;
+				lowFailurePeriod = 75;
+				highFailurePeriod = 100;
 				break;
 			}
 			case "highFailure": {
-				lowFailurePeriod = 1;
-				highFailurePeriod = 5;
+				lowFailurePeriod = 50;
+				highFailurePeriod = 75;
 				break;
 			}
 			case "mediumFailure": {
-				lowFailurePeriod = 5;
-				highFailurePeriod = 10;
-			}
-			case "lowFailure": {
-				lowFailurePeriod = 10;
+				lowFailurePeriod = 25;
 				highFailurePeriod = 50;
 			}
+			case "lowFailure": {
+				lowFailurePeriod = 1;
+				highFailurePeriod = 25;
+			}
 		}
-		mapData.initiateRangeQueryTask(lowFailurePeriod, highFailurePeriod, false);
+		mapData.initiateRangeQueryTask(lowFailurePeriod, highFailurePeriod, "LOF");
 	}
 	
 	public void initMapData(Stage newMapStage, FeatureData newMapData) {

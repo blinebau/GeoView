@@ -34,6 +34,9 @@ public class FeatureData {
 			data_task.setOnSucceeded(t -> { 
 				attrColl = data_task.getValue(); 
 			});
+			data_task.setOnFailed(t -> {
+				//exception notice
+			});
 			Thread th = new Thread(data_task);
 			th.setDaemon(true);
 			th.start();
@@ -49,8 +52,8 @@ public class FeatureData {
 		//found in calculators
 	}
 	
-	public void initiateRangeQueryTask(int lower, int higher, boolean queryType) {
-		QueryTask queryTask = new QueryTask(this.attrColl, lower, higher, queryType);
+	public void initiateRangeQueryTask(int lower, int higher, String fieldName) {
+		QueryTask queryTask = new QueryTask(this.attrColl, lower, higher, fieldName);
 		queryTask.setOnSucceeded(t -> {
 			ExportTask exportTask = new ExportTask(queryTask.getValue());
 			Thread th = new Thread(exportTask);
@@ -62,3 +65,4 @@ public class FeatureData {
 		th.start();
 	}
 }
+

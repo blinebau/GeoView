@@ -1,5 +1,7 @@
 package geoview.calculators;
 import java.util.Map;
+
+import geoview.exceptions.InvalidInputException;
 /*
     This class and it's subclasses will be utilized when the map data is uploaded into the program.
     Its purpose is to gather all various criteria for forming LoF and CoF, and using this criteria to calculate the LoF and CoF, for each pipe.
@@ -12,14 +14,22 @@ public abstract class RiskModelCalculator {
         protected double[] weights;
     
     
-    public int calcWeightedCriteriaValues(Map<String, Object> attributes){
+    public int calcWeightedCriteriaValues(Map<String, Object> attributes) throws InvalidInputException{
         int usedTags = 0;
         double weightedCriteriaScore =  0.0;
         
         for(int tagIndex = 0; tagIndex < criteriaTags.length; tagIndex++){
                 String tag = criteriaTags[tagIndex];
-                if(attributes.get(tag) != null){
-                    double tagValue = new Double(attributes.get(tag).toString());
+                Object value = attributes.get(tag);
+                int specialCasesValue;
+                if(value != null){
+                    double tagValue;
+                    if((specialCasesValue = specialCalcCases(tag, value)) != -1){
+                        tagValue =  (double) specialCasesValue;
+                    }
+                    else{
+                        tagValue = new Double(value.toString());
+                    }
                     weightedCriteriaScore += tagValue * weights[tagIndex];
                     usedTags++;
                 }
@@ -38,6 +48,8 @@ public abstract class RiskModelCalculator {
     public String[] getCriteriaTags(){
         return criteriaTags;
     }
+           
+    protected abstract int specialCalcCases(String tag, Object value) throws InvalidInputException;
     
     
 }

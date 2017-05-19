@@ -6,6 +6,10 @@ import java.util.Arrays;
 
 public class SchemaException extends Exception {
     ArrayList<String> schemaTags;
+    
+    public SchemaException(){
+        
+    }
 
     public SchemaException(ArrayList<String> missingSchemaTags, String msg) {
         super(msg + "/n Missing Schema Tags: " + Arrays.toString(missingSchemaTags.toArray()));

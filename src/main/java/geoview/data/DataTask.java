@@ -4,6 +4,7 @@ import geoview.calculators.CoFCalculator;
 import geoview.calculators.LoFCalculator;
 import geoview.calculators.SCICalculator;
 import geoview.exceptions.SchemaException;
+import geoview.exceptions.InvalidInputException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,7 +30,7 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
     }
 
     @Override
-    protected ArrayList<Map<String, Object>> call() throws SchemaException {
+    protected ArrayList<Map<String, Object>> call() throws SchemaException, InvalidInputException {
         boolean firstFeature = true;
         ArrayList<Map<String, Object>> featureAttr = new ArrayList<>();
         Iterator<Feature> feature_it = result.iterator();
@@ -42,6 +43,12 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
             featureAttr.add(setRiskModelValues(feature));
         }
         sortBySCI(featureAttr);
+        
+        for(Map<String,Object> featureVal : featureAttr){
+            for(Object keys : featureVal.keySet()){
+                System.out.println(keys + ": " + featureVal.get(keys));
+            }
+        }
         
         return featureAttr;
     }
@@ -79,7 +86,7 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
     }
         
     //calculates and sets SCI/COF/LOF values.
-    private Map<String, Object> setRiskModelValues(Feature feature){
+    private Map<String, Object> setRiskModelValues(Feature feature) throws InvalidInputException{
 
         Map<String, Object> attributes = feature.getAttributes();
 

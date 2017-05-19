@@ -14,7 +14,7 @@ public class LoFCalculator extends RiskModelCalculator {
     protected int specialCalcCases(String tag, Object value) throws InvalidInputException{
         if(tag.equals("AGE")){
             try{
-                return Math.min(Integer.parseInt(value.toString())/20, 10); 
+                return Math.min((int)Double.parseDouble(value.toString())/20, 10); 
             } 
             catch(NumberFormatException e){    
                 throw new InvalidInputException(tag, value.toString(), "Error: Invalid Input");

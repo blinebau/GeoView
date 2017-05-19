@@ -29,13 +29,13 @@ public class CoFCalculator extends RiskModelCalculator {
                 }
             }
             else if(tag.equals("DEPTH")){
-                return Math.min(Integer.parseInt(value.toString())/3, 10);
+                return Math.min((int)Double.parseDouble(value.toString())/3, 10);
             }
             else if(tag.equals("LENGTH")){
-                return Math.min(Integer.parseInt(value.toString())/10, 10);
+                return Math.min((int)Double.parseDouble(value.toString())/10, 10);
             }
             else if(tag.equals("RADIUS")){
-                return Math.min(Integer.parseInt(value.toString())/10, 10);
+                return Math.min((int)Double.parseDouble(value.toString())/10, 10);
             }
         }
         catch(NumberFormatException e){

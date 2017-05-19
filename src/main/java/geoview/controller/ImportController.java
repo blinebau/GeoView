@@ -3,6 +3,7 @@ package geoview.controller;
 
 import geoview.alerts.DataAlert;
 import geoview.alerts.ImportAlert;
+import geoview.alerts.ProgressAlert;
 import geoview.data.FeatureData;
 import geoview.importers.ImportFileMap;
 import geoview.importers.ImportPortalMap;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -99,7 +101,7 @@ public class ImportController {
 		public void importEvent(ActionEvent event) throws IOException {
 			if(mapStage == null) {
 				if(importFeatureData()) {
-					importMapData();
+					//importMapData();
 				}
 			} else {
 				Alert alert = ImportAlert.setAlert(importButton.getScene().getWindow());
@@ -133,13 +135,13 @@ public class ImportController {
 		
 		private boolean importFeatureData() {
 			mapData = new FeatureData();
-			String importStatus = mapData.retrieveMapData();
-			//System.out.println(mapData.getImportStatus());
-			if(!importStatus.equals("Success")) {
+			ProgressAlert progressAlert = new ProgressAlert();
+			String importStatus = mapData.retrieveMapData(progressAlert);
+/*			if() {
 				Alert dataAlert = DataAlert.setAlert(importButton.getScene().getWindow(), importStatus);
 				dataAlert.showAndWait();
 				return false;
-			}
+			}*/
 			return true;
 		}
 		

@@ -33,22 +33,19 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
     protected ArrayList<Map<String, Object>> call() throws SchemaException, InvalidInputException {
         boolean firstFeature = true;
         ArrayList<Map<String, Object>> featureAttr = new ArrayList<>();
-        Iterator<Feature> feature_it = result.iterator();
-        while(feature_it.hasNext()) {
-            Feature feature = feature_it.next();
+        Iterator<Feature> featureIt = result.iterator();
+        while(featureIt.hasNext()) {
+            Feature feature = featureIt.next();
             if (firstFeature){
                 checkSchema(feature);
                 firstFeature = false;
+                updateProgress(.3, 1);
             }
             featureAttr.add(setRiskModelValues(feature));
         }
+        updateProgress(.7, 1);
         sortBySCI(featureAttr);
-        
-        for(Map<String,Object> featureVal : featureAttr){
-            for(Object keys : featureVal.keySet()){
-                System.out.println(keys + ": " + featureVal.get(keys));
-            }
-        }
+        updateProgress(1, 1);
         
         return featureAttr;
     }
@@ -56,16 +53,17 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
     //Check to see if each criteria tag (CCTV, GRIT, etc.) is included in the uploaded map data.
     private boolean checkSchema(Feature feature) throws SchemaException{
         ArrayList<String> schemaTags = new ArrayList<>();
+        Map<String, Object> featureAttr = feature.getAttributes();
         boolean schemaCorrect = true;
         
         for(String tag : cofCalculator.getCriteriaTags()){
-            if(!feature.getAttributes().containsKey(tag)){
+            if(!featureAttr.containsKey(tag)){
                 schemaTags.add(tag);
                 schemaCorrect = false;
             }
         }
         for(String tag : lofCalculator.getCriteriaTags()){
-            if(!feature.getAttributes().containsKey(tag)){
+            if(!featureAttr.containsKey(tag)){
                 schemaTags.add(tag);
                 schemaCorrect = false;
             }

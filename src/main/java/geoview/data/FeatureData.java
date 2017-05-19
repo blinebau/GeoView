@@ -10,7 +10,9 @@ import com.esri.arcgisruntime.data.QueryParameters;
 import com.esri.arcgisruntime.data.ServiceFeatureTable;
 import com.esri.arcgisruntime.data.ServiceFeatureTable.FeatureRequestMode;
 
+import geoview.alerts.ProgressAlert;
 import geoview.exporters.ExportTask;
+import javafx.scene.control.ProgressIndicator;
 
 public class FeatureData {
 	
@@ -23,7 +25,7 @@ public class FeatureData {
 		importStatus = "";
 	}
 	
-	public String retrieveMapData() {
+	public String retrieveMapData(ProgressAlert progressAlert) {
 		ServiceFeatureTable service_table = new ServiceFeatureTable("http://services7.arcgis.com/DQPcd87LglSVJI8c/arcgis/rest/services/Sewer_Test_Map/FeatureServer/1");
 		service_table.setFeatureRequestMode(FeatureRequestMode.MANUAL_CACHE);
 		QueryParameters query = new QueryParameters();
@@ -34,15 +36,17 @@ public class FeatureData {
 		try {
 			FeatureQueryResult result = query_result.get();
 			DataTask dataTask = new DataTask(result);
+			progressAlert.bindProgress(dataTask);
 			dataTask.setOnSucceeded(t -> { 
 				attrColl = dataTask.getValue();
-				importStatus = dataTask.getMessage();
 			});
 			dataTask.setOnFailed(t -> {
 				if(dataTask.getException() != null) {
 					importStatus = dataTask.getException().getMessage();
 				}
+				progressAlert.close();
 			});
+			progressAlert.show();
 			Thread th = new Thread(dataTask);
 			th.setDaemon(true);
 			th.start();

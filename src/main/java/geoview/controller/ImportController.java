@@ -1,6 +1,8 @@
 package geoview.controller;
 
 
+import geoview.alerts.DataAlert;
+import geoview.alerts.ImportAlert;
 import geoview.data.FeatureData;
 import geoview.importers.ImportFileMap;
 import geoview.importers.ImportPortalMap;
@@ -96,8 +98,9 @@ public class ImportController {
 		@FXML 
 		public void importEvent(ActionEvent event) throws IOException {
 			if(mapStage == null) {
-				importMapData();
-				importFeatureData();
+				if(importFeatureData()) {
+					importMapData();
+				}
 			} else {
 				Alert alert = ImportAlert.setAlert(importButton.getScene().getWindow());
 				Optional<ButtonType> result = alert.showAndWait();
@@ -106,8 +109,9 @@ public class ImportController {
 					MapView view = (MapView) mapScene.getRoot();
 					view.dispose();
 					mapStage.close();
-					importMapData();
-					importFeatureData();
+					if(importFeatureData()) {
+						importMapData();
+					}
 				}
 			}
 		}
@@ -127,9 +131,16 @@ public class ImportController {
 			mapStage.show();
 		}
 		
-		private void importFeatureData() {
+		private boolean importFeatureData() {
 			mapData = new FeatureData();
-			mapData.retrieveMapData();
+			String importStatus = mapData.retrieveMapData();
+			//System.out.println(mapData.getImportStatus());
+			if(!importStatus.equals("Success")) {
+				Alert dataAlert = DataAlert.setAlert(importButton.getScene().getWindow(), importStatus);
+				dataAlert.showAndWait();
+				return false;
+			}
+			return true;
 		}
 		
 		private String getFilePath() throws IOException {
@@ -150,7 +161,7 @@ public class ImportController {
 				});
 				Scene scene = new Scene(view, 600, 400);
 				mapStage.setScene(scene);
-				mapStage.getIcons().add(new Image("/geoview_logo_temp.png"));
+				mapStage.getIcons().add(new Image("/window_icon.png"));
 				mapStage.setTitle("GEOVIEW - MAP");
 				return mapStage;
 		}

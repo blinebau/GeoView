@@ -1,4 +1,4 @@
-package geoview.controller;
+package geoview.alerts;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

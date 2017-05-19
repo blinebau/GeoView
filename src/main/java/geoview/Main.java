@@ -3,7 +3,6 @@ package geoview;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +24,7 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.setScene(menuScene);
 			primaryStage.getIcons().add(new Image("/window_icon.png"));
-			primaryStage.setTitle("GEOVIEW");
+			primaryStage.setTitle("GeoView");
 			primaryStage.setOnCloseRequest((event) -> {
 				Platform.exit();
 			});

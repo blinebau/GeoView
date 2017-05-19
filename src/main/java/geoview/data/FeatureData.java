@@ -16,11 +16,14 @@ public class FeatureData {
 	
 	private ArrayList<Map<String, Object>> attrColl;
 	
+	private String importStatus;
+	
 	public FeatureData() {
 		attrColl = new ArrayList<>();
+		importStatus = "";
 	}
 	
-	public void retrieveMapData() {
+	public String retrieveMapData() {
 		ServiceFeatureTable service_table = new ServiceFeatureTable("http://services7.arcgis.com/DQPcd87LglSVJI8c/arcgis/rest/services/Sewer_Test_Map/FeatureServer/1");
 		service_table.setFeatureRequestMode(FeatureRequestMode.MANUAL_CACHE);
 		QueryParameters query = new QueryParameters();
@@ -30,21 +33,26 @@ public class FeatureData {
 		ListenableFuture<FeatureQueryResult> query_result = service_table.populateFromServiceAsync(query, false, fields_pop);
 		try {
 			FeatureQueryResult result = query_result.get();
-			DataTask data_task = new DataTask(result);
-			data_task.setOnSucceeded(t -> { 
-				attrColl = data_task.getValue(); 
+			DataTask dataTask = new DataTask(result);
+			dataTask.setOnSucceeded(t -> { 
+				attrColl = dataTask.getValue();
+				importStatus = dataTask.getMessage();
 			});
-			data_task.setOnFailed(t -> {
-				//exception notice
+			dataTask.setOnFailed(t -> {
+				if(dataTask.getException() != null) {
+					importStatus = dataTask.getException().getMessage();
+				}
 			});
-			Thread th = new Thread(data_task);
+			Thread th = new Thread(dataTask);
 			th.setDaemon(true);
 			th.start();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
+			System.out.println(e.getCause());
 			e.printStackTrace();
 		}
+		return importStatus;
 	}
 	
 	public void queryMaintenancePlan(int year, String method, int budget) {

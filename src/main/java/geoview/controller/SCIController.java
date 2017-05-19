@@ -55,7 +55,6 @@ public class SCIController {
 		assert(back != null);
 		search.setDisable(true);
 		defectChoice.setDisable(true);
-		//configureSearchToggleListener();
 		configureFieldEntryListeners();
 	}
 	
@@ -78,28 +77,6 @@ public class SCIController {
 			//defects
 		}
 	}
-	
-/*	private void configureSearchToggleListener() {
-		searchToggle.selectedToggleProperty().addListener((observed, oldVal, newVal) -> {
-			if(newVal.equals(sci) || newVal.equals(icg)) {
-				defectChoice.getSelectionModel().clearSelection();
-				defectChoice.setDisable(true);
-				search.setDisable(true);
-				if(newVal.equals(sci)) {
-					icgFrom.textProperty().setValue("");
-					icgTo.textProperty().setValue("");
-				} else {
-					sciFrom.textProperty().setValue("");
-					sciTo.textProperty().setValue("");
-				}
-			} else {
-				sciFrom.textProperty().setValue("");
-				sciTo.textProperty().setValue("");
-				defectChoice.setDisable(false);
-				search.setDisable(true);
-			}
-		});
-	}*/
 	
 	private void configureFieldEntryListeners() {
 		sciFrom.textProperty().addListener((observed, oldVal, newVal) -> {

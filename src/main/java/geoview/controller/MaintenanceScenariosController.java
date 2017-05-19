@@ -52,12 +52,12 @@ public class MaintenanceScenariosController {
 		assert(calculate != null);
 		assert(back != null);
 		
-		pipeReplacementRadio.setDisable(true);
+/*		pipeReplacementRadio.setDisable(true);
 		pipeReplacementChoiceBox.setDisable(true);
 		trenchlessRehabRadio.setDisable(true);
 		trenchlessRehabChoiceBox.setDisable(true);
 		calculate.setDisable(true);
-		budget.setDisable(true);
+		budget.setDisable(true);*/
 		
 		//configureRadioToggleListener();
 		configureChoiceBoxListeners();

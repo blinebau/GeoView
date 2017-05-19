@@ -1,0 +1,33 @@
+* {
+	-fx-font-family: 'Ebrima'
+}
+
+@CHARSET {"ISO-8859-1"}};
+
+@font-face {
+	src: url("/fonts/JuliusSansOne-Regular.ttf");
+}
+
+#background {
+	-fx-background-color: #edf0f5;
+}
+
+#header {
+	-fx-background-color: #f5f2ed;
+	-fx-border-color: #666666;
+	-fx-border-width: 0 0 1.5 0;
+}
+
+#title {
+	-fx-font-family: 'Julius Sans One';
+}
+
+#descriptive {
+	-fx-font-family: 'Ebrima';
+	-fx-font-size: 15px;	
+}
+
+#searchLabel {
+	-fx-font-family: 'Ebrima';
+	-fx-font-size: 14px;
+}

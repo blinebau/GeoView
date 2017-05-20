@@ -3,12 +3,11 @@ package geoview.controller;
 
 import geoview.alerts.DataAlert;
 import geoview.alerts.ImportAlert;
-import geoview.alerts.ProgressAlert;
+import geoview.data.DataTask;
 import geoview.data.FeatureData;
 import geoview.importers.ImportFileMap;
 import geoview.importers.ImportPortalMap;
 import geoview.importers.ImportedMap;
-import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,16 +16,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Optional;
 
 import com.esri.arcgisruntime.mapping.view.MapView;
@@ -100,20 +101,17 @@ public class ImportController {
 		@FXML 
 		public void importEvent(ActionEvent event) throws IOException {
 			if(mapStage == null) {
-				if(importFeatureData()) {
-					//importMapData();
-				}
+				importFeatureData();
 			} else {
 				Alert alert = ImportAlert.setAlert(importButton.getScene().getWindow());
 				Optional<ButtonType> result = alert.showAndWait();
 				if(result.get() == ButtonType.OK) {
+					mapData.setAttrCollection(new ArrayList<Map<String, Object>>());
 					Scene mapScene = mapStage.getScene();
 					MapView view = (MapView) mapScene.getRoot();
 					view.dispose();
 					mapStage.close();
-					if(importFeatureData()) {
-						importMapData();
-					}
+					importFeatureData();
 				}
 			}
 		}
@@ -133,16 +131,24 @@ public class ImportController {
 			mapStage.show();
 		}
 		
-		private boolean importFeatureData() {
-			mapData = new FeatureData();
-			ProgressAlert progressAlert = new ProgressAlert();
-			String importStatus = mapData.retrieveMapData(progressAlert);
-/*			if() {
-				Alert dataAlert = DataAlert.setAlert(importButton.getScene().getWindow(), importStatus);
+		private void importFeatureData() {
+			DataTask dataTask = new DataTask();
+			dataTask.setOnSucceeded(t -> {
+				mapData.setAttrCollection(dataTask.getValue());
+				importMapData();
+			});
+			dataTask.setOnFailed(t -> {
+				Alert dataAlert;
+				Window alertWindow = importButton.getScene().getWindow();
+				if(dataTask.getException() != null) {
+					dataAlert = DataAlert.setAlert(alertWindow, dataTask.getException().getMessage());
+				} else {
+					dataAlert = DataAlert.setAlert(alertWindow, "Error related to invalid schema or field value.");
+				}
 				dataAlert.showAndWait();
-				return false;
-			}*/
-			return true;
+			});
+			mapData = new FeatureData();
+			mapData.retrieveMapData(dataTask);
 		}
 		
 		private String getFilePath() throws IOException {
@@ -164,7 +170,7 @@ public class ImportController {
 				Scene scene = new Scene(view, 600, 400);
 				mapStage.setScene(scene);
 				mapStage.getIcons().add(new Image("/window_icon.png"));
-				mapStage.setTitle("GEOVIEW - MAP");
+				mapStage.setTitle("GeoView - Map");
 				return mapStage;
 		}
 }

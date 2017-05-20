@@ -10,22 +10,17 @@ import com.esri.arcgisruntime.data.QueryParameters;
 import com.esri.arcgisruntime.data.ServiceFeatureTable;
 import com.esri.arcgisruntime.data.ServiceFeatureTable.FeatureRequestMode;
 
-import geoview.alerts.ProgressAlert;
 import geoview.exporters.ExportTask;
-import javafx.scene.control.ProgressIndicator;
 
 public class FeatureData {
 	
 	private ArrayList<Map<String, Object>> attrColl;
 	
-	private String importStatus;
-	
 	public FeatureData() {
 		attrColl = new ArrayList<>();
-		importStatus = "";
 	}
 	
-	public String retrieveMapData(ProgressAlert progressAlert) {
+	public void retrieveMapData(DataTask dataTask) {
 		ServiceFeatureTable service_table = new ServiceFeatureTable("http://services7.arcgis.com/DQPcd87LglSVJI8c/arcgis/rest/services/Sewer_Test_Map/FeatureServer/1");
 		service_table.setFeatureRequestMode(FeatureRequestMode.MANUAL_CACHE);
 		QueryParameters query = new QueryParameters();
@@ -35,18 +30,7 @@ public class FeatureData {
 		ListenableFuture<FeatureQueryResult> query_result = service_table.populateFromServiceAsync(query, false, fields_pop);
 		try {
 			FeatureQueryResult result = query_result.get();
-			DataTask dataTask = new DataTask(result);
-			progressAlert.bindProgress(dataTask);
-			dataTask.setOnSucceeded(t -> { 
-				attrColl = dataTask.getValue();
-			});
-			dataTask.setOnFailed(t -> {
-				if(dataTask.getException() != null) {
-					importStatus = dataTask.getException().getMessage();
-				}
-				progressAlert.close();
-			});
-			progressAlert.show();
+			dataTask.setQueryResult(result);
 			Thread th = new Thread(dataTask);
 			th.setDaemon(true);
 			th.start();
@@ -56,7 +40,6 @@ public class FeatureData {
 			System.out.println(e.getCause());
 			e.printStackTrace();
 		}
-		return importStatus;
 	}
 	
 	public void queryMaintenancePlan(int year, String method, int budget) {
@@ -75,6 +58,10 @@ public class FeatureData {
 		Thread th = new Thread(queryTask);
 		th.setDaemon(true);
 		th.start();
+	}
+	
+	public void setAttrCollection(ArrayList<Map<String, Object>> newColl) {
+		attrColl = newColl;
 	}
 }
 

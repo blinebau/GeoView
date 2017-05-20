@@ -22,11 +22,16 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
     private FeatureQueryResult result;
     private CoFCalculator cofCalculator;
     private LoFCalculator lofCalculator;
+    
+    public DataTask() {
+    	cofCalculator = new CoFCalculator();
+    	lofCalculator = new LoFCalculator();
+    }
 
     public DataTask(FeatureQueryResult newResult) {
-            result = newResult;
-            cofCalculator = new CoFCalculator();
-            lofCalculator = new LoFCalculator();
+        result = newResult;
+        cofCalculator = new CoFCalculator();
+        lofCalculator = new LoFCalculator();
     }
 
     @Override
@@ -39,15 +44,15 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
             if (firstFeature){
                 checkSchema(feature);
                 firstFeature = false;
-                updateProgress(.3, 1);
             }
             featureAttr.add(setRiskModelValues(feature));
         }
-        updateProgress(.7, 1);
         sortBySCI(featureAttr);
-        updateProgress(1, 1);
-        
         return featureAttr;
+    }
+    
+    public void setQueryResult(FeatureQueryResult newResult) {
+    	result = newResult;
     }
     
     //Check to see if each criteria tag (CCTV, GRIT, etc.) is included in the uploaded map data.

@@ -12,7 +12,7 @@ public class SchemaException extends Exception {
     }
 
     public SchemaException(ArrayList<String> missingSchemaTags, String msg) {
-        super(msg + "/n Missing Schema Tags: " + Arrays.toString(missingSchemaTags.toArray()));
+        super(msg + "\n Missing Schema Tags: " + Arrays.toString(missingSchemaTags.toArray()));
     }
 
     public SchemaException(String msg) {

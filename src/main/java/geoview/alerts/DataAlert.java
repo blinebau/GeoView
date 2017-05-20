@@ -12,7 +12,7 @@ public class DataAlert {
 		alert.initOwner(owner);
 		alert.setResizable(false);
 		alert.initModality(Modality.WINDOW_MODAL);
-		alert.setTitle("GEOVIEW - Invalid Data");
+		alert.setTitle("GeoView - Invalid Data");
 		alert.setHeaderText("An error occurred while importing data.");
 		alert.setContentText(message);
 		return alert;

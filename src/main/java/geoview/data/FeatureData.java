@@ -1,6 +1,7 @@
 package geoview.data;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -11,21 +12,22 @@ import com.esri.arcgisruntime.data.ServiceFeatureTable;
 import com.esri.arcgisruntime.data.ServiceFeatureTable.FeatureRequestMode;
 
 import geoview.exporters.ExportTask;
+import javafx.concurrent.Task;
 
 public class FeatureData {
 	
-	private ArrayList<Map<String, Object>> attrColl;
+	private List<Map<String, Object>> attrColl;
 	
 	public FeatureData() {
 		attrColl = new ArrayList<>();
 	}
 	
-	public void retrieveMapData(DataTask dataTask) {
-		ServiceFeatureTable service_table = new ServiceFeatureTable("http://services7.arcgis.com/DQPcd87LglSVJI8c/arcgis/rest/services/Sewer_Test_Map/FeatureServer/1");
+	public void retrieveMapData(DataTask dataTask, String serviceURL) {
+		ServiceFeatureTable service_table = new ServiceFeatureTable(serviceURL);
 		service_table.setFeatureRequestMode(FeatureRequestMode.MANUAL_CACHE);
 		QueryParameters query = new QueryParameters();
 		query.setWhereClause("OBJECTID NOT LIKE '" + "'");
-		ArrayList<String> fields_pop = new ArrayList<>();
+		List<String> fields_pop = new ArrayList<>();
 		fields_pop.add("*");
 		ListenableFuture<FeatureQueryResult> query_result = service_table.populateFromServiceAsync(query, false, fields_pop);
 		try {
@@ -43,25 +45,41 @@ public class FeatureData {
 	}
 	
 	public void queryMaintenancePlan(int year, String method, int budget) {
-		//call to maintenance plan(year, method, budget, attrColl);
-		//found in calculators
+		Task<List<Map<String, Object>>> planTask = new PlanTask(year, method, budget, attrColl);
+		planTask.setOnSucceeded(t -> {
+			planTask.getValue();
+			initiateExport(planTask.getValue(), "MAINTENANCE");
+		});
+		initiateDataTask(planTask);
 	}
 	
 	public void initiateRangeQueryTask(int lower, int higher, String fieldName) {
-		QueryTask queryTask = new QueryTask(this.attrColl, lower, higher, fieldName);
+		Task<List<Map<String, Object>>> queryTask = new QueryTask(this.attrColl, lower, higher, fieldName);
 		queryTask.setOnSucceeded(t -> {
-			ExportTask exportTask = new ExportTask(queryTask.getValue());
-			Thread th = new Thread(exportTask);
-			th.setDaemon(true);
-			th.start();
+			initiateExport(queryTask.getValue(), fieldName);
 		});
-		Thread th = new Thread(queryTask);
+		initiateDataTask(queryTask);
+	}
+	
+	public void setAttrCollection(List<Map<String, Object>> newColl) {
+		attrColl = newColl;
+	}
+	
+	private void initiateDataTask(Task<List<Map<String, Object>>> task) {
+		Thread th = new Thread(task);
 		th.setDaemon(true);
 		th.start();
 	}
 	
-	public void setAttrCollection(ArrayList<Map<String, Object>> newColl) {
-		attrColl = newColl;
+	private void initiateExportTask(Task<Void> task) {
+		Thread th = new Thread(task);
+		th.setDaemon(true);
+		th.start();
+	}
+	
+	private void initiateExport(List<Map<String, Object>> exportedFeatures, String exportType) {
+		ExportTask exportTask = new ExportTask(exportedFeatures, exportType);
+		initiateExportTask(exportTask);
 	}
 }
 

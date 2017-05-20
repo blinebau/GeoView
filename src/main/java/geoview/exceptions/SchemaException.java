@@ -2,6 +2,7 @@ package geoview.exceptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class SchemaException extends Exception {
@@ -11,7 +12,7 @@ public class SchemaException extends Exception {
         
     }
 
-    public SchemaException(ArrayList<String> missingSchemaTags, String msg) {
+    public SchemaException(List<String> missingSchemaTags, String msg) {
         super(msg + "\n Missing Schema Tags: " + Arrays.toString(missingSchemaTags.toArray()));
     }
 

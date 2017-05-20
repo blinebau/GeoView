@@ -2,12 +2,14 @@ package geoview.data;
 
 import geoview.calculators.CoFCalculator;
 import geoview.calculators.LoFCalculator;
+import geoview.calculators.RiskModelCalculator;
 import geoview.calculators.SCICalculator;
 import geoview.exceptions.SchemaException;
 import geoview.exceptions.InvalidInputException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,11 +19,11 @@ import com.esri.arcgisruntime.data.FeatureQueryResult;
 
 import javafx.concurrent.Task;
 
-public class DataTask extends Task<ArrayList<Map<String, Object>>> {
+public class DataTask extends Task<List<Map<String, Object>>> {
 	
     private FeatureQueryResult result;
-    private CoFCalculator cofCalculator;
-    private LoFCalculator lofCalculator;
+    private RiskModelCalculator cofCalculator;
+    private RiskModelCalculator lofCalculator;
     
     public DataTask() {
     	cofCalculator = new CoFCalculator();
@@ -35,9 +37,9 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
     }
 
     @Override
-    protected ArrayList<Map<String, Object>> call() throws SchemaException, InvalidInputException {
+    protected List<Map<String, Object>> call() throws SchemaException, InvalidInputException {
         boolean firstFeature = true;
-        ArrayList<Map<String, Object>> featureAttr = new ArrayList<>();
+        List<Map<String, Object>> featureAttr = new ArrayList<>();
         Iterator<Feature> featureIt = result.iterator();
         while(featureIt.hasNext()) {
             Feature feature = featureIt.next();
@@ -57,7 +59,7 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
     
     //Check to see if each criteria tag (CCTV, GRIT, etc.) is included in the uploaded map data.
     private boolean checkSchema(Feature feature) throws SchemaException{
-        ArrayList<String> schemaTags = new ArrayList<>();
+        List<String> schemaTags = new ArrayList<>();
         Map<String, Object> featureAttr = feature.getAttributes();
         boolean schemaCorrect = true;
         
@@ -79,7 +81,7 @@ public class DataTask extends Task<ArrayList<Map<String, Object>>> {
         return schemaCorrect;
     }
     
-    private void sortBySCI(ArrayList<Map<String, Object>> features){
+    private void sortBySCI(List<Map<String, Object>> features){
         Collections.sort(features, new Comparator<Map<String, Object>>(){
             @Override
             public int compare(Map<String, Object> s1, Map<String, Object> s2){

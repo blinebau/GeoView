@@ -59,6 +59,9 @@ public class ImportController {
 		@FXML
 		private TextField idField;
 		
+		@FXML
+		private TextField urlField;
+		
 		private FXMLLoader mainLoad;
 		
 		private FeatureData mapData;
@@ -71,6 +74,8 @@ public class ImportController {
 			assert(importButton != null);
 			assert(pathField != null);
 			assert(idField != null);
+			idField.setText("98f54307ba5e4586b49772b73a16d245");
+			urlField.setText("http://services7.arcgis.com/DQPcd87LglSVJI8c/arcgis/rest/services/Sewer_Test_Map/FeatureServer/1");
 			configureSearchToggleListener();
 			mainLoad = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
 		}
@@ -148,7 +153,7 @@ public class ImportController {
 				dataAlert.showAndWait();
 			});
 			mapData = new FeatureData();
-			mapData.retrieveMapData(dataTask);
+			mapData.retrieveMapData(dataTask, urlField.getText());
 		}
 		
 		private String getFilePath() throws IOException {

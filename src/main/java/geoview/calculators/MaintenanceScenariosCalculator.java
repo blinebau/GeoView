@@ -1,6 +1,6 @@
 package geoview.calculators;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -16,7 +16,7 @@ public class MaintenanceScenariosCalculator {
     //For now this is implemented by calculating cost for the highest SCI pipes.
     //The highest SCI pipes will be returned, until the budget is filled.
     //If there are no high SCI pipes that fit within the budget, lower SCI pipes are considered.
-    public static ArrayList<Map<String, Object>> calculateMaintenanceScenarios(int year, String maintenanceType, int budget, ArrayList<Map<String, Object>> features){
+    public static List<Map<String, Object>> calculateMaintenanceScenarios(int year, String maintenanceType, int budget, List<Map<String, Object>> features){
         int calculatedCost;
         for(Map<String, Object> feature : features){
             calculatedCost = calculateFeatureCost(maintenanceType, feature);

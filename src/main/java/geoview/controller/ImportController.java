@@ -74,6 +74,7 @@ public class ImportController {
 			assert(importButton != null);
 			assert(pathField != null);
 			assert(idField != null);
+			webRadio.setSelected(true);
 			idField.setText("98f54307ba5e4586b49772b73a16d245");
 			urlField.setText("http://services7.arcgis.com/DQPcd87LglSVJI8c/arcgis/rest/services/Sewer_Test_Map/FeatureServer/1");
 			configureSearchToggleListener();

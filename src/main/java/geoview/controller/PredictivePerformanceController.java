@@ -1,8 +1,12 @@
 package geoview.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import geoview.data.FeatureData;
+import geoview.data.QueryTask;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -84,7 +88,8 @@ public class PredictivePerformanceController {
 				highFailurePeriod = 25;
 			}
 		}
-		mapData.initiateRangeQueryTask(lowFailurePeriod, highFailurePeriod, "LOF");
+		Task<List<Map<String, Object>>> rangeTask = new QueryTask(lowFailurePeriod, highFailurePeriod, "LOF");
+		mapData.initiateRangeQueryTask(rangeTask, "LOF");
 	}
 	
 	public void initMapData(Stage newMapStage, FeatureData newMapData) {

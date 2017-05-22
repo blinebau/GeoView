@@ -1,8 +1,12 @@
 package geoview.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import geoview.data.FeatureData;
+import geoview.data.QueryTask;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,10 +75,12 @@ public class SCIController {
 	}
 	
 	private void search(RadioButton selected) {
+		Task<List<Map<String, Object>>> rangeTask;
 		if(selected.equals(sci)) {		
-			mapData.initiateRangeQueryTask(Integer.parseInt(sciFrom.getText()),Integer.parseInt(sciTo.getText()), "SCI");
+			rangeTask = new QueryTask(Integer.parseInt(sciFrom.getText()),  Integer.parseInt(sciTo.getText()), "SCI");
+			mapData.initiateRangeQueryTask(rangeTask, "SCI");
 		} else {
-			//defects
+			//defect
 		}
 	}
 	

@@ -8,7 +8,7 @@ import javafx.concurrent.Task;
 
 public class QueryTask extends Task<List<Map<String, Object>>> {
 	
-	private List<Map<String, Object>> attrColl;
+	private List<Map<String, Object>> featureAttr;
 	
 	private int low;
 	
@@ -16,8 +16,7 @@ public class QueryTask extends Task<List<Map<String, Object>>> {
 	
 	private String searchField;
 	
-	public QueryTask(List<Map<String, Object>> newAttr, int lowerBound, int higherBound, String fieldName) {
-		attrColl = newAttr;
+	public QueryTask(int lowerBound, int higherBound, String fieldName) {
 		low = lowerBound;
 		high = higherBound;
 		searchField = fieldName;
@@ -32,12 +31,20 @@ public class QueryTask extends Task<List<Map<String, Object>>> {
 	
 	private List<Map<String, Object>> searchInRange() {
 		List<Map<String, Object>> resultAttr = new ArrayList<>();
-		for(Map<String, Object> attrMap : attrColl) {
+		for(Map<String, Object> attrMap : featureAttr) {
 			Integer sci = (Integer) attrMap.get(searchField);
 			if(sci >= low && sci <= high) {
 				resultAttr.add(attrMap);
 			}
 		}
 		return resultAttr;
+	}
+	
+	public void setFeatureAttr(List<Map<String, Object>> featureColl) {
+		featureAttr = featureColl;
+	}
+	
+	public String getSearchField() {
+		return searchField;
 	}
 }

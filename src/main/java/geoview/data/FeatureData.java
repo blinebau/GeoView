@@ -33,9 +33,7 @@ public class FeatureData {
 		try {
 			FeatureQueryResult result = query_result.get();
 			dataTask.setQueryResult(result);
-			Thread th = new Thread(dataTask);
-			th.setDaemon(true);
-			th.start();
+			initiateDataTask(dataTask);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
@@ -44,25 +42,27 @@ public class FeatureData {
 		}
 	}
 	
-	public void queryMaintenancePlan(int year, String method, int budget) {
-		Task<List<Map<String, Object>>> planTask = new PlanTask(year, method, budget, attrColl);
-		planTask.setOnSucceeded(t -> {
-			planTask.getValue();
-			initiateExport(planTask.getValue(), "MAINTENANCE");
+	public void initiateMaintenancePlanTask(Task<List<Map<String, Object>>> task) {
+		task.setOnSucceeded(t -> {
+			initiateExport(task.getValue(), "MAINTENANCE");
 		});
-		initiateDataTask(planTask);
+		initiateDataTask(task);
 	}
 	
-	public void initiateRangeQueryTask(int lower, int higher, String fieldName) {
-		Task<List<Map<String, Object>>> queryTask = new QueryTask(this.attrColl, lower, higher, fieldName);
-		queryTask.setOnSucceeded(t -> {
-			initiateExport(queryTask.getValue(), fieldName);
+	public void initiateRangeQueryTask(Task<List<Map<String, Object>>> task, String fieldName) {
+		task.setOnSucceeded(t -> {
+			initiateExport(task.getValue(), fieldName);
 		});
-		initiateDataTask(queryTask);
+		initiateDataTask(task);
 	}
 	
 	public void setAttrCollection(List<Map<String, Object>> newColl) {
 		attrColl = newColl;
+	}
+	
+	private void initiateExport(List<Map<String, Object>> exportedFeatures, String exportType) {
+		ExportTask exportTask = new ExportTask(exportedFeatures, exportType);
+		initiateExportTask(exportTask);
 	}
 	
 	private void initiateDataTask(Task<List<Map<String, Object>>> task) {
@@ -75,11 +75,6 @@ public class FeatureData {
 		Thread th = new Thread(task);
 		th.setDaemon(true);
 		th.start();
-	}
-	
-	private void initiateExport(List<Map<String, Object>> exportedFeatures, String exportType) {
-		ExportTask exportTask = new ExportTask(exportedFeatures, exportType);
-		initiateExportTask(exportTask);
 	}
 }
 

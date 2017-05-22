@@ -105,7 +105,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="budget" prefHeight="26.0" prefWidth="252.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="budgetField" prefHeight="26.0" prefWidth="252.0" GridPane.columnIndex="1" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -135,7 +135,7 @@
                         <Insets bottom="3.0" top="3.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="calculate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Generate Plan" GridPane.columnIndex="2" />
+                  <Button fx:id="calculate" onAction="#generatePlanEvent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Generate Plan" GridPane.columnIndex="2" />
                </children>
             </GridPane>
          </children>

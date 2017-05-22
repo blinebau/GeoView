@@ -13,17 +13,16 @@ public class PlanTask extends Task<List<Map<String, Object>>> {
 	
 	private String maintenanceType;
 	
-	private int budget;
+	private double budget;
 	
 	private List<Map<String, Object>> featureAttr;
 	
 	public PlanTask () {}
 	
-	public PlanTask(int newYear, String newMaintenanceType, int newBudget, List<Map<String, Object>> newFeatures) {
+	public PlanTask(int newYear, String newMaintenanceType, double newBudget) {
 		year = newYear;
 		maintenanceType = newMaintenanceType;
 		budget = newBudget;
-		featureAttr = newFeatures;
 	}
 	
 	@Override
@@ -31,6 +30,10 @@ public class PlanTask extends Task<List<Map<String, Object>>> {
 		List<Map<String, Object>> featureAttr = new ArrayList<>();
 		featureAttr = MaintenanceScenariosCalculator.calculateMaintenanceScenarios(year, maintenanceType, budget, featureAttr);
 		return featureAttr;
+	}
+	
+	public void setFeatureAttr(List<Map<String, Object>> featureColl) {
+		featureAttr = featureColl;
 	}
 
 }

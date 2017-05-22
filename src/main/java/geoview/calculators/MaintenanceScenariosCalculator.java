@@ -43,9 +43,9 @@ public class MaintenanceScenariosCalculator {
     //For now since we are treating all of these values as
     private static double calculateFeatureCost(String maintenanceType, Map<String, Object> feature){
         double length = Integer.parseInt(feature.get("LENGTH").toString());
-        double depth = Integer.parseInt(feature.get("DEPTH").toString());
+        double depth = Double.parseDouble(feature.get("DEPTH").toString());
         String pipeMaterial = feature.get("PIPE_MATERIAL").toString();
-        double radius = Integer.parseInt(feature.get("RADIUS").toString());
+        double radius = Double.parseDouble(feature.get("RADIUS").toString());
         
         double costPerFoot = length * getPipeTypeValue(pipeMaterial) * getReplacementTypeValue(maintenanceType) * getDepthWeight(depth) * getRadiusWeight(radius);
         
@@ -73,9 +73,9 @@ public class MaintenanceScenariosCalculator {
                 return sameSizeReplacementAvgCost;
             case "Up-Size Replacement":
                 return upSizeReplacementAvgCost;
-            case "Full Trench Replacement":
+            case "Full Trench Rehab":
                 return fullTrenchlessRehabAvgCost;
-            case "Partial Trench Replacement":
+            case "Partial Trench Rehab":
                 return partialTrenchlessRehabAvgCost;
             default:
                 return 0.0;

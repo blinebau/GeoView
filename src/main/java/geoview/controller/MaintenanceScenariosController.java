@@ -1,7 +1,12 @@
 package geoview.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
+import geoview.data.FeatureData;
+import geoview.data.PlanTask;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 public class MaintenanceScenariosController {
 
@@ -33,13 +39,17 @@ public class MaintenanceScenariosController {
 	private ToggleGroup rehabToggle;
 	
 	@FXML
-	private TextField budget;
+	private TextField budgetField;
 	
 	@FXML
 	private Button calculate;
 	
 	@FXML
 	private Button back;
+
+	private Stage mapStage;
+
+	private FeatureData mapData;
 	
 	@FXML
 	public void initialize() {
@@ -48,19 +58,10 @@ public class MaintenanceScenariosController {
 		assert(pipeReplacementChoiceBox != null);
 		assert(trenchlessRehabRadio != null);
 		assert(trenchlessRehabChoiceBox != null);
-		assert(budget != null);
+		assert(budgetField != null);
 		assert(calculate != null);
 		assert(back != null);
-		
-/*		pipeReplacementRadio.setDisable(true);
-		pipeReplacementChoiceBox.setDisable(true);
-		trenchlessRehabRadio.setDisable(true);
-		trenchlessRehabChoiceBox.setDisable(true);
-		calculate.setDisable(true);
-		budget.setDisable(true);*/
-		
-		//configureRadioToggleListener();
-		configureChoiceBoxListeners();
+		pipeReplacementRadio.setSelected(true);
 	} 
 	
 	@FXML
@@ -69,19 +70,23 @@ public class MaintenanceScenariosController {
 		back.getScene().setRoot((Parent)load.load());
 	}
 	
-/*	@FXML
-	private void configureRadioToggleListener() {
-		rehabToggle.selectedToggleProperty().addListener((observed, oldVal, newVal) -> {
-			if(newVal.equals(pipeReplacementRadio)) {
-				
-			} else {
-				
-			}
-		});
-	}*/
-	
 	@FXML
-	private void configureChoiceBoxListeners() {
-		
+	private void generatePlanEvent(ActionEvent event) {
+		int year = Integer.parseInt(cipYear.getSelectionModel().getSelectedItem());
+		RadioButton selected = (RadioButton) rehabToggle.selectedToggleProperty().getValue();
+		String method = "";
+		if(selected.equals(pipeReplacementRadio)) {
+			method = pipeReplacementChoiceBox.getSelectionModel().getSelectedItem();
+		} else {
+			method = trenchlessRehabChoiceBox.getSelectionModel().getSelectedItem();
+		}
+		double budget = Double.parseDouble(budgetField.getText());
+		Task<List<Map<String, Object>>> planTask = new PlanTask(year, method, budget);
+		mapData.initiateMaintenancePlanTask(planTask);
+	}
+
+	public void initMapData(Stage newMapStage, FeatureData newMapData) {
+		mapStage = newMapStage;
+		mapData = newMapData;
 	}
 }

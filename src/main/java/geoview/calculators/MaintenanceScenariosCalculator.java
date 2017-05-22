@@ -42,7 +42,7 @@ public class MaintenanceScenariosCalculator {
     
     //For now since we are treating all of these values as
     private static double calculateFeatureCost(String maintenanceType, Map<String, Object> feature){
-        double length = Integer.parseInt(feature.get("LENGTH").toString());
+        double length = Double.parseDouble(feature.get("LENGTH").toString());
         double depth = Double.parseDouble(feature.get("DEPTH").toString());
         String pipeMaterial = feature.get("PIPE_MATERIAL").toString();
         double radius = Double.parseDouble(feature.get("RADIUS").toString());

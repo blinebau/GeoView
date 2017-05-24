@@ -22,6 +22,10 @@ public class MaintenanceScenariosCalculator {
     private static double averageDepth = 10.0;
     private static double averageRadius = 50.0;
     
+    //Denotes how much the depth/radius weight will change in relation to deviations from the average.
+    private static double depthModification = 10.0;
+    private static double radiusModification = 30.0;
+    
     
     //For now this is implemented by calculating cost for the highest SCI pipes.
     //The highest SCI pipes will be returned, until the budget is filled.
@@ -34,13 +38,13 @@ public class MaintenanceScenariosCalculator {
             double featureCost = calculateFeatureCost(maintenanceType, feature);
             if((calculatedCost + featureCost) <= budget){
                 calculatedCost += featureCost;
+                feature.put("BUDGET", (Double)featureCost);
                 budgetedFeatures.add(feature);
             }
         }
         return budgetedFeatures;
     }
     
-    //For now since we are treating all of these values as
     private static double calculateFeatureCost(String maintenanceType, Map<String, Object> feature){
         double length = Double.parseDouble(feature.get("LENGTH").toString());
         double depth = Double.parseDouble(feature.get("DEPTH").toString());
@@ -86,13 +90,13 @@ public class MaintenanceScenariosCalculator {
     private static double getDepthWeight(double depth){
         double returnWeight = 1.0;
         double depthModifier = depth - averageDepth;
-        return Math.max(returnWeight + (depthModifier/10.0), 0.8);   
+        return Math.max(returnWeight + (depthModifier/depthModification), 0.8);   
     }
     
     private static double getRadiusWeight(double radius){
         double returnWeight = 1.0;
         double radiusModifier = radius - averageRadius;
-        return Math.max(returnWeight + (radiusModifier/30.0), 0.3);   
+        return Math.max(returnWeight + (radiusModifier/radiusModification), 0.3);   
     }
     
 }

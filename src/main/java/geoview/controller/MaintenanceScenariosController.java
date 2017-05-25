@@ -72,7 +72,7 @@ public class MaintenanceScenariosController {
 	
 	@FXML
 	private void generatePlanEvent(ActionEvent event) {
-		int year = Integer.parseInt(cipYear.getSelectionModel().getSelectedItem());
+		String year = cipYear.getSelectionModel().getSelectedItem();
 		RadioButton selected = (RadioButton) rehabToggle.selectedToggleProperty().getValue();
 		String method = "";
 		if(selected.equals(pipeReplacementRadio)) {
@@ -80,9 +80,10 @@ public class MaintenanceScenariosController {
 		} else {
 			method = trenchlessRehabChoiceBox.getSelectionModel().getSelectedItem();
 		}
-		double budget = Double.parseDouble(budgetField.getText());
-		Task<List<Map<String, Object>>> planTask = new PlanTask(year, method, budget);
-		mapData.initiateMaintenancePlanTask(planTask);
+		String budget = budgetField.getText();
+		Task<List<Map<String, Object>>> planTask = new PlanTask(Integer.parseInt(year), method, Double.parseDouble(budget));
+		String[] taskDetails = { "Maintenance Plan", year, method, budget };
+		mapData.initiateTask(planTask, taskDetails);
 	}
 
 	public void initMapData(Stage newMapStage, FeatureData newMapData) {

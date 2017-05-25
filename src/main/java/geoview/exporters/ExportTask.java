@@ -28,18 +28,20 @@ public class ExportTask extends Task<Void> {
     
     private List<Map<String, Object>> attrColl;
     
-    private String exportMessage;
+    private String[] exportDetails;
     //private LocalDateTime currentTime = LocalDateTime.now();
     
+    private final String[] searchFields = { "SEWER_ID", "SCI", "AGE", "LENGTH", "PIPE_MATERIAL" };
+    private final String[] planFields = { "SEWER_ID", "SCI", "AGE", "LENGTH", "PIPE_MATERIAL", "BUDGET" };
     private final String PDF_DEST = "./src/main/resources/export1.pdf";
     private final String TITLE_FONT = "./src/main/resources/fonts/JuliusSansOne-Regular.ttf";
     private final String DESC_FONT = "./src/main/resources/fonts/CrimsonText-Regular.ttf";
     /*	private final String PDF_DEST = "./src/main/resources/export-" + currentTime.toLocalDate() + "@" + currentTime.getHour() + "-" +
      currentTime.getMinute() + ".pdf";*/
     
-    public ExportTask(List<Map<String, Object>> newColl, String exportType) {
+    public ExportTask(List<Map<String, Object>> newColl, String[] newDetails) {
         attrColl = newColl;
-        exportMessage = determineExportMessage(exportType);
+        exportDetails = newDetails;
     }
     
     @Override
@@ -54,7 +56,6 @@ public class ExportTask extends Task<Void> {
     private void manipulatePDF(String dest) throws FileNotFoundException, IOException {
         PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
         PdfFont titleFont = PdfFontFactory.createFont(TITLE_FONT, PdfEncodings.CP1250, true);
-        PdfFont descFont = PdfFontFactory.createFont(DESC_FONT, PdfEncodings.CP1250, true);
         Document doc = new Document(pdfDoc);
         
         Paragraph titleHeading = new Paragraph();
@@ -63,22 +64,21 @@ public class ExportTask extends Task<Void> {
         			.setFont(titleFont)
         			.setFontSize(24.0f);
         doc.add(titleHeading);
+        doc.add(generateSubHeader());
         
-        Paragraph subTitleHeading = new Paragraph();
-        subTitleHeading.setTextAlignment(TextAlignment.LEFT);
-        subTitleHeading.add(exportMessage)
-        				.setFont(descFont)
-        				.setFontSize(18.0f);
-        doc.add(subTitleHeading);
-        
-        populateTable(doc);
+        if(exportDetails[0].equals("MAINTENANCE")) {
+        	populateTable(doc, planFields);
+        } else {
+        	populateTable(doc, searchFields);
+        }
         doc.close();
     }
     
-    private void populateTable(Document doc) {
-        //Omitted PIPE_MATERIAL- 2
-        String[] fields = { "SEWER_ID", "SCI", "AGE", "LENGTH" };
-        float[] fieldWidth = { 2, 2, 2, 2 };
+    private void populateTable(Document doc, String[] fields) {
+        float[] fieldWidth = new float[fields.length];
+        for(int i = 0; i < fieldWidth.length; i++) {
+        	fieldWidth[i] = 1;
+        }
         
         Table table = new Table(fieldWidth);
         table.setWidthPercent(100);
@@ -100,12 +100,33 @@ public class ExportTask extends Task<Void> {
         doc.add(table);
     }
     
-    private String determineExportMessage(String exportType) {
-    	switch(exportType) {
-	    	case "SCI":
-	    		return "Sewer Condition Index";
-	    	default:
-	    		return "Exported Result";
-    	}
+    private Paragraph generateSubHeader() throws IOException {
+    	PdfFont descFont = PdfFontFactory.createFont(DESC_FONT, PdfEncodings.CP1250, true);
+    	Paragraph subTitleHeading = new Paragraph();
+        subTitleHeading.setTextAlignment(TextAlignment.LEFT);
+        StringBuilder builder = new StringBuilder();
+        subTitleHeading.add(buildDetailsMessage(builder))
+        				.setFont(descFont)
+        				.setFontSize(18.0f);
+        return subTitleHeading;
+    }
+    
+    private String buildDetailsMessage(StringBuilder builder) {
+        builder.append(exportDetails[0]);
+        builder.append(" - ");
+        if(exportDetails[0].equals("Maintenance Plan")) {
+        	builder.append(" Year: ");
+        	builder.append(exportDetails[1]);
+        	builder.append(" Method: ");
+        	builder.append(exportDetails[2]);
+        	builder.append(" Budget: ");
+        	builder.append(exportDetails[3]);
+        } else {
+        	builder.append(" From: ");
+        	builder.append(exportDetails[1]);
+        	builder.append(" To: ");
+        	builder.append(exportDetails[2]);
+        }
+        return builder.toString();
     }
 }

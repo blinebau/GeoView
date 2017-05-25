@@ -89,7 +89,8 @@ public class PredictivePerformanceController {
 			}
 		}
 		Task<List<Map<String, Object>>> rangeTask = new QueryTask(lowFailurePeriod, highFailurePeriod, "LOF");
-		mapData.initiateRangeQueryTask(rangeTask, "LOF");
+		String[] taskDetails = { "Predictive Performance", Integer.toString(lowFailurePeriod), Integer.toString(highFailurePeriod) };
+		mapData.initiateTask(rangeTask, taskDetails);
 	}
 	
 	public void initMapData(Stage newMapStage, FeatureData newMapData) {

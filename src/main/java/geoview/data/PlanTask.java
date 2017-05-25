@@ -36,4 +36,16 @@ public class PlanTask extends Task<List<Map<String, Object>>> {
 		featureAttr = featureColl;
 	}
 
+	public int getYear() {
+		return year;
+	}
+	
+	public String getMaintenanceType() {
+		return maintenanceType;
+	}
+	
+	public double getBudget() {
+		return budget;
+	}
+
 }

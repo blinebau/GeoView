@@ -76,9 +76,12 @@ public class SCIController {
 	
 	private void search(RadioButton selected) {
 		Task<List<Map<String, Object>>> rangeTask;
-		if(selected.equals(sci)) {		
-			rangeTask = new QueryTask(Integer.parseInt(sciFrom.getText()),  Integer.parseInt(sciTo.getText()), "SCI");
-			mapData.initiateRangeQueryTask(rangeTask, "SCI");
+		if(selected.equals(sci)) {
+			String from = sciFrom.getText();
+			String to = sciTo.getText();
+			rangeTask = new QueryTask(Integer.parseInt(from),  Integer.parseInt(to), "SCI");
+			String[] taskDetails = { "Sewer Condition Index", from, to };
+			mapData.initiateTask(rangeTask, taskDetails);
 		} else {
 			//defect
 		}

@@ -42,16 +42,9 @@ public class FeatureData {
 		}
 	}
 	
-	public void initiateMaintenancePlanTask(Task<List<Map<String, Object>>> task) {
+	public void initiateTask(Task<List<Map<String, Object>>> task, String[] taskDetails) {
 		task.setOnSucceeded(t -> {
-			initiateExport(task.getValue(), "MAINTENANCE");
-		});
-		initiateDataTask(task);
-	}
-	
-	public void initiateRangeQueryTask(Task<List<Map<String, Object>>> task, String fieldName) {
-		task.setOnSucceeded(t -> {
-			initiateExport(task.getValue(), fieldName);
+			initiateExport(task.getValue(), taskDetails);
 		});
 		initiateDataTask(task);
 	}
@@ -60,8 +53,8 @@ public class FeatureData {
 		attrColl = newColl;
 	}
 	
-	private void initiateExport(List<Map<String, Object>> exportedFeatures, String exportType) {
-		ExportTask exportTask = new ExportTask(exportedFeatures, exportType);
+	private void initiateExport(List<Map<String, Object>> exportedFeatures, String[] exportDetails) {
+		ExportTask exportTask = new ExportTask(exportedFeatures, exportDetails);
 		initiateExportTask(exportTask);
 	}
 	

@@ -19,21 +19,18 @@ public class PlanTask extends Task<List<Map<String, Object>>> {
 	
 	public PlanTask () {}
 	
-	public PlanTask(int newYear, String newMaintenanceType, double newBudget) {
+	public PlanTask(int newYear, String newMaintenanceType, double newBudget, List<Map<String, Object>> newColl) {
 		year = newYear;
 		maintenanceType = newMaintenanceType;
 		budget = newBudget;
+		featureAttr = newColl;
 	}
 	
 	@Override
 	public List<Map<String, Object>> call() {
-		List<Map<String, Object>> featureAttr = new ArrayList<>();
-		featureAttr = MaintenanceScenariosCalculator.calculateMaintenanceScenarios(year, maintenanceType, budget, featureAttr);
-		return featureAttr;
-	}
-	
-	public void setFeatureAttr(List<Map<String, Object>> featureColl) {
-		featureAttr = featureColl;
+		List<Map<String, Object>> planColl = new ArrayList<>();
+		planColl = MaintenanceScenariosCalculator.calculateMaintenanceScenarios(year, maintenanceType, budget, featureAttr);
+		return planColl;
 	}
 
 	public int getYear() {

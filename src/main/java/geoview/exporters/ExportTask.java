@@ -66,7 +66,7 @@ public class ExportTask extends Task<Void> {
         doc.add(titleHeading);
         doc.add(generateSubHeader());
         
-        if(exportDetails[0].equals("MAINTENANCE")) {
+        if(exportDetails[0].equals("Maintenance Plan")) {
         	populateTable(doc, planFields);
         } else {
         	populateTable(doc, searchFields);
@@ -107,25 +107,27 @@ public class ExportTask extends Task<Void> {
         StringBuilder builder = new StringBuilder();
         subTitleHeading.add(buildDetailsMessage(builder))
         				.setFont(descFont)
-        				.setFontSize(18.0f);
+        				.setFontSize(14.0f);
         return subTitleHeading;
     }
     
     private String buildDetailsMessage(StringBuilder builder) {
-        builder.append(exportDetails[0]);
-        builder.append(" - ");
-        if(exportDetails[0].equals("Maintenance Plan")) {
-        	builder.append(" Year: ");
+    	String exportType = exportDetails[0];
+        builder.append(exportType);
+        if(exportType.equals("Maintenance Plan")) {
+        	builder.append("\nYear: ");
         	builder.append(exportDetails[1]);
-        	builder.append(" Method: ");
+        	builder.append("\nMethod: ");
         	builder.append(exportDetails[2]);
-        	builder.append(" Budget: ");
+        	builder.append("\nBudget: $");
+        	builder.append(exportDetails[3]);
+        } else if(exportType.equals("Sewer Condition Index")){
+        	builder.append(exportDetails[1]);
+        	builder.append(exportDetails[2]);
+        	builder.append(" - ");
         	builder.append(exportDetails[3]);
         } else {
-        	builder.append(" From: ");
         	builder.append(exportDetails[1]);
-        	builder.append(" To: ");
-        	builder.append(exportDetails[2]);
         }
         return builder.toString();
     }

@@ -7,14 +7,14 @@ import javafx.stage.Window;
 
 public class DataAlert {
 	
-	public static Alert setAlert(Window owner, String message) {
+	public static Alert setAlert(Window owner, String[] alertText) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.initOwner(owner);
 		alert.setResizable(false);
 		alert.initModality(Modality.WINDOW_MODAL);
-		alert.setTitle("GeoView - Invalid Data");
-		alert.setHeaderText("An error occurred while importing data.");
-		alert.setContentText(message);
+		alert.setTitle(alertText[0]);
+		alert.setHeaderText(alertText[1]);
+		alert.setContentText(alertText[2]);
 		return alert;
 	}
 

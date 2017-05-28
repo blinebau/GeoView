@@ -16,10 +16,11 @@ public class QueryTask extends Task<List<Map<String, Object>>> {
 	
 	private String searchField;
 	
-	public QueryTask(int lowerBound, int higherBound, String fieldName) {
+	public QueryTask(int lowerBound, int higherBound, String fieldName, List<Map<String, Object>> newColl) {
 		low = lowerBound;
 		high = higherBound;
 		searchField = fieldName;
+		featureAttr = newColl;
 	}
 	
 	@Override
@@ -38,10 +39,6 @@ public class QueryTask extends Task<List<Map<String, Object>>> {
 			}
 		}
 		return resultAttr;
-	}
-	
-	public void setFeatureAttr(List<Map<String, Object>> featureColl) {
-		featureAttr = featureColl;
 	}
 	
 	public String getSearchField() {

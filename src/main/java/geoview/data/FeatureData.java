@@ -33,7 +33,7 @@ public class FeatureData {
 		try {
 			FeatureQueryResult result = query_result.get();
 			dataTask.setQueryResult(result);
-			initiateDataTask(dataTask);
+			initiateTask(dataTask);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
@@ -42,29 +42,23 @@ public class FeatureData {
 		}
 	}
 	
-	public void initiateTask(Task<List<Map<String, Object>>> task, String[] taskDetails) {
+	public void prepareTask(Task<List<Map<String, Object>>> task, String[] taskDetails) {
+
 		task.setOnSucceeded(t -> {
-			initiateExport(task.getValue(), taskDetails);
+			initiateTask(new ExportTask(task.getValue(), taskDetails));
 		});
-		initiateDataTask(task);
+		initiateTask(task);
 	}
 	
 	public void setAttrCollection(List<Map<String, Object>> newColl) {
 		attrColl = newColl;
 	}
 	
-	private void initiateExport(List<Map<String, Object>> exportedFeatures, String[] exportDetails) {
-		ExportTask exportTask = new ExportTask(exportedFeatures, exportDetails);
-		initiateExportTask(exportTask);
+	public List<Map<String, Object>> getAttrCollection() {
+		return attrColl;
 	}
 	
-	private void initiateDataTask(Task<List<Map<String, Object>>> task) {
-		Thread th = new Thread(task);
-		th.setDaemon(true);
-		th.start();
-	}
-	
-	private void initiateExportTask(Task<Void> task) {
+	private void initiateTask(Task<?> task) {
 		Thread th = new Thread(task);
 		th.setDaemon(true);
 		th.start();

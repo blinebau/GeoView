@@ -71,7 +71,7 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backEvent" prefHeight="25.0" prefWidth="120.0" text="Back">
+                                    <Button fx:id="back" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backEvent" prefHeight="25.0" prefWidth="120.0" text="Back">
                                        <padding>
                                           <Insets bottom="5.0" top="5.0" />
                                        </padding>
@@ -80,7 +80,7 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                                  <children>
-                                    <Button fx:id="findButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#findEvent" prefHeight="25.0" prefWidth="120.0" text="Search">
+                                    <Button fx:id="search" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchEvent" prefHeight="25.0" prefWidth="120.0" text="Search">
                                        <padding>
                                           <Insets bottom="5.0" top="5.0" />
                                        </padding>

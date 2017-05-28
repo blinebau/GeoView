@@ -3,12 +3,16 @@ package geoview.controller;
 import java.io.IOException;
 
 import geoview.data.FeatureData;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 public class MainMenuController {
 	
@@ -55,12 +59,16 @@ public class MainMenuController {
 	public void predictivePerformanceEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("PredictivePerformance.fxml"));
 		predictivePerformance.getScene().setRoot((Parent)load.load());
+		PredictivePerformanceController cntrl = load.<PredictivePerformanceController>getController();
+		cntrl.initMapData(mapStage, mapData);
 	}
 	
 	@FXML
 	public void maintenanceScenariosEvent(ActionEvent event) throws IOException {
 		FXMLLoader load = new FXMLLoader(getClass().getClassLoader().getResource("MaintenanceScenarios.fxml"));
 		maintenanceScenarios.getScene().setRoot((Parent)load.load());
+		MaintenanceScenariosController cntrl = load.<MaintenanceScenariosController>getController();
+		cntrl.initMapData(mapStage, mapData);
 	}
 	
 	public void initMapData(Stage newMapStage, FeatureData newMapData) {

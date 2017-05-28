@@ -37,15 +37,17 @@
                         <ChoiceBox fx:id="cipYear" prefHeight="26.0" prefWidth="224.0">
                            <items>
                                <FXCollections fx:factory="observableArrayList">
-                                   <String fx:value="Year 2011" />
-                                   <String fx:value="Year 2012" />
-                                   <String fx:value="Year 2013" />
-                                   <String fx:value="Year 2014" />
-                                   <String fx:value="Year 2015" />
-                                   <String fx:value="Year 2016" />
-                                   <String fx:value="Year 2017" />
-                                   <String fx:value="Year 2018" />
-                                   <String fx:value="Year 2019" />
+                                   <String fx:value="2017" />
+                                   <String fx:value="2018" />
+                                   <String fx:value="2019" />
+                                   <String fx:value="2020" />
+                                   <String fx:value="2021" />
+                                   <String fx:value="2022" />
+                                   <String fx:value="2023" />
+                                   <String fx:value="2024" />
+                                   <String fx:value="2025" />
+                                   <String fx:value="2026" />
+                                   <String fx:value="2027" />
                                </FXCollections>
                            </items>
                         </ChoiceBox>
@@ -58,7 +60,7 @@
                   </Text>
                   <RadioButton fx:id="pipeReplacementRadio" mnemonicParsing="false" text="Pipe Replacement">
                      <toggleGroup>
-                        <ToggleGroup fx:id="rehabtoggle" />
+                        <ToggleGroup fx:id="rehabToggle" />
                      </toggleGroup>
                      <padding>
                         <Insets top="10.0" />
@@ -75,7 +77,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </ChoiceBox>
-                  <RadioButton fx:id="trenchlessRehabRadio" mnemonicParsing="false" text="Trenchless Rehab" toggleGroup="$rehabtoggle">
+                  <RadioButton fx:id="trenchlessRehabRadio" mnemonicParsing="false" text="Trenchless Rehab" toggleGroup="$rehabToggle">
                      <padding>
                         <Insets top="7.0" />
                      </padding>
@@ -135,7 +137,7 @@
                         <Insets bottom="3.0" top="3.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="calculate" onAction="#generatePlanEvent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Generate Plan" GridPane.columnIndex="2" />
+                  <Button fx:id="generate" onAction="#generatePlanEvent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Generate Plan" GridPane.columnIndex="2" />
                </children>
             </GridPane>
          </children>

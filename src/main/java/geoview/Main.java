@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Main extends Application {
 	
@@ -25,7 +26,7 @@ public class Main extends Application {
 			primaryStage.setScene(menuScene);
 			primaryStage.getIcons().add(new Image("/window_icon.png"));
 			primaryStage.setTitle("GeoView");
-			primaryStage.setOnCloseRequest((event) -> {
+			primaryStage.setOnCloseRequest(e -> {
 				Platform.exit();
 			});
 			primaryStage.show();

@@ -2,12 +2,12 @@ package geoview.controller;
 
 
 import geoview.alerts.DataAlert;
-import geoview.alerts.ImportAlert;
 import geoview.data.DataTask;
 import geoview.data.FeatureData;
 import geoview.importers.ImportFileMap;
 import geoview.importers.ImportPortalMap;
 import geoview.importers.ImportedMap;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -109,10 +109,10 @@ public class ImportController {
 			if(mapStage == null) {
 				importFeatureData();
 			} else {
-				Alert alert = ImportAlert.setAlert(importButton.getScene().getWindow());
-				Optional<ButtonType> result = alert.showAndWait();
+				String[] alertText = { "GeoView - Import Confirmation", "Confirm New Import", "Importing new data now will begin a new session, closing the map window. Do you wish to import new data?"};
+				Alert importConfirm = DataAlert.setAlert(importButton.getScene().getWindow(), alertText);
+				Optional<ButtonType> result = importConfirm.showAndWait();
 				if(result.get() == ButtonType.OK) {
-					mapData.setAttrCollection(new ArrayList<Map<String, Object>>());
 					Scene mapScene = mapStage.getScene();
 					MapView view = (MapView) mapScene.getRoot();
 					view.dispose();
@@ -138,22 +138,24 @@ public class ImportController {
 		}
 		
 		private void importFeatureData() {
+			mapData = new FeatureData();
 			DataTask dataTask = new DataTask();
 			dataTask.setOnSucceeded(t -> {
 				mapData.setAttrCollection(dataTask.getValue());
 				importMapData();
 			});
 			dataTask.setOnFailed(t -> {
-				Alert dataAlert;
+				Alert invalidData;
+				String[] alertText = { "GeoView - Invalid Data", "An error occurred while importing data.", "Error related to invalid schema or field value."};
 				Window alertWindow = importButton.getScene().getWindow();
 				if(dataTask.getException() != null) {
-					dataAlert = DataAlert.setAlert(alertWindow, dataTask.getException().getMessage());
+					alertText[2] = dataTask.getException().getMessage();
+					invalidData = DataAlert.setAlert(alertWindow, alertText);
 				} else {
-					dataAlert = DataAlert.setAlert(alertWindow, "Error related to invalid schema or field value.");
+					invalidData = DataAlert.setAlert(alertWindow, alertText);
 				}
-				dataAlert.showAndWait();
+				invalidData.showAndWait();
 			});
-			mapData = new FeatureData();
 			mapData.retrieveMapData(dataTask, urlField.getText());
 		}
 		

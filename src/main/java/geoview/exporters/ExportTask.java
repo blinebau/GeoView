@@ -1,19 +1,13 @@
 package geoview.exporters;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-//import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.kernel.color.Color;
 import com.itextpdf.kernel.color.DeviceGray;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -24,44 +18,41 @@ import com.itextpdf.layout.property.TextAlignment;
 
 import javafx.concurrent.Task;
 
-public class ExportTask extends Task<Void> {
+public class ExportTask extends Task<File> {
     
     private List<Map<String, Object>> attrColl;
     
     private List<String> exportDetails;
-    //private LocalDateTime currentTime = LocalDateTime.now();
+    
+    private String exportDest;
     
     private final String[] searchFields = { "SEWER_ID", "SCI", "AGE", "LENGTH", "PIPE_MATERIAL" };
     private final String[] planFields = { "SEWER_ID", "SCI", "AGE", "LENGTH", "PIPE_MATERIAL", "BUDGET" };
-    private final String PDF_DEST = "./src/main/resources/export1.pdf";
-    private final String TITLE_FONT = "./src/main/resources/fonts/JuliusSansOne-Regular.ttf";
-    private final String DESC_FONT = "./src/main/resources/fonts/CrimsonText-Regular.ttf";
-    /*	private final String PDF_DEST = "./src/main/resources/export-" + currentTime.toLocalDate() + "@" + currentTime.getHour() + "-" +
-     currentTime.getMinute() + ".pdf";*/
+    //private final String TITLE_FONT = "/JuliusSansOne-Regular.ttf";
+    //private final String DESC_FONT = "/CrimsonText-Regular.ttf";
     
-    public ExportTask(List<Map<String, Object>> newColl, List<String> newDetails) {
+    public ExportTask(List<Map<String, Object>> newColl, List<String> newDetails, String dest) {
         attrColl = newColl;
         exportDetails = newDetails;
+        exportDest = dest;
     }
     
     @Override
-    protected Void call() throws IOException {
-        File exportFile = new File(PDF_DEST);
-        exportFile.getParentFile().mkdirs();
-        manipulatePDF(PDF_DEST);
-        Desktop.getDesktop().open(exportFile);
-        return null;
+    protected File call() throws IOException {
+        File exportFile = new File(exportDest);
+        manipulatePDF();
+        return exportFile;
     }
     
-    private void manipulatePDF(String dest) throws FileNotFoundException, IOException {
-        PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
-        PdfFont titleFont = PdfFontFactory.createFont(TITLE_FONT, PdfEncodings.CP1250, true);
+    private void manipulatePDF() throws FileNotFoundException, IOException {
+        PdfDocument pdfDoc = new PdfDocument(new PdfWriter(exportDest));
+        //PdfFont titleFont = PdfFontFactory.createFont(TITLE_FONT, PdfEncodings.CP1250, true);
         Document doc = new Document(pdfDoc);
         
         Paragraph titleHeading = new Paragraph();
         titleHeading.setTextAlignment(TextAlignment.LEFT);
         titleHeading.add("GeoView")
-        			.setFont(titleFont)
+        			//.setFont(titleFont)
         			.setFontSize(24.0f);
         doc.add(titleHeading);
         doc.add(generateSubHeader());
@@ -101,12 +92,12 @@ public class ExportTask extends Task<Void> {
     }
     
     private Paragraph generateSubHeader() throws IOException {
-    	PdfFont descFont = PdfFontFactory.createFont(DESC_FONT, PdfEncodings.CP1250, true);
+    	//PdfFont descFont = PdfFontFactory.createFont(DESC_FONT, PdfEncodings.CP1250, true);
     	Paragraph subTitleHeading = new Paragraph();
         subTitleHeading.setTextAlignment(TextAlignment.LEFT);
         StringBuilder builder = new StringBuilder();
         subTitleHeading.add(buildDetailsMessage(builder))
-        				.setFont(descFont)
+        				//.setFont(descFont)
         				.setFontSize(14.0f);
         return subTitleHeading;
     }

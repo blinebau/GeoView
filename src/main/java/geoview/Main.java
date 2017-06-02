@@ -23,7 +23,6 @@ public class Main extends Application {
 			Parent root = loader.load();
 			Scene menuScene = new Scene(root);
 			primaryStage.setResizable(false);
-			primaryStage.setAlwaysOnTop(true);
 			primaryStage.setScene(menuScene);
 			primaryStage.getIcons().add(new Image("/window_icon.png"));
 			primaryStage.setTitle("GeoView");

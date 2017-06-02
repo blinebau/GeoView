@@ -1,5 +1,8 @@
 package geoview.data;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +13,9 @@ import com.esri.arcgisruntime.data.FeatureQueryResult;
 import com.esri.arcgisruntime.data.QueryParameters;
 import com.esri.arcgisruntime.data.ServiceFeatureTable;
 import com.esri.arcgisruntime.data.ServiceFeatureTable.FeatureRequestMode;
-
 import geoview.exporters.ExportTask;
 import javafx.concurrent.Task;
+import javafx.stage.FileChooser;
 
 public class FeatureData {
 	
@@ -37,15 +40,34 @@ public class FeatureData {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			System.out.println(e.getCause());
 			e.printStackTrace();
 		}
 	}
 	
 	public void prepareTask(Task<List<Map<String, Object>>> task, List<String> taskDetails) {
-
 		task.setOnSucceeded(t -> {
-			initiateTask(new ExportTask(task.getValue(), taskDetails));
+			FileChooser fileChooser = new FileChooser();
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("pdf files (*.pdf)", "*.pdf");
+            fileChooser.getExtensionFilters().add(extFilter);
+			File file = fileChooser.showSaveDialog(null);
+			Task<File> exportTask = new ExportTask(task.getValue(), taskDetails, file.getPath());
+			exportTask.setOnSucceeded(e -> {
+				try {
+					Desktop.getDesktop().open(exportTask.get());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				} catch (ExecutionException e1) {
+					e1.printStackTrace();
+				} finally {
+					
+				}
+			});
+			exportTask.setOnFailed(e -> {
+				System.out.println(exportTask.getException().getMessage());
+			});
+			initiateTask(exportTask);
 		});
 		initiateTask(task);
 	}

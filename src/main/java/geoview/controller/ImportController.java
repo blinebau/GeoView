@@ -20,14 +20,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Optional;
 
 import com.esri.arcgisruntime.mapping.Viewpoint;
@@ -91,10 +87,6 @@ public class ImportController {
 					pathField.setText("");
 				}
 			});
-		}
-		
-		public void browseEvent() throws IOException {
-				pathField.setText(getFilePath());
 		}
 		
 		
@@ -162,15 +154,6 @@ public class ImportController {
 				invalidData.showAndWait();
 			});
 			mapData.retrieveMapData(dataTask, urlField.getText());
-		}
-		
-		private String getFilePath() throws IOException {
-			FileChooser fileChooser = new FileChooser();
-			File file = fileChooser.showOpenDialog(null);
-			if (file != null) {
-				return file.getName();
-			}
-			return "";
 		}
 		
 		private Stage generateMapStage(MapView view) {

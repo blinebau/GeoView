@@ -6,7 +6,11 @@ import java.util.List;
 
 
 public class SchemaException extends Exception {
-    ArrayList<String> schemaTags;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	ArrayList<String> schemaTags;
     
     public SchemaException(){
         

@@ -7,7 +7,6 @@ import com.esri.arcgisruntime.mapping.view.MapView;
 import geoview.data.FeatureData;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

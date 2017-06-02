@@ -3,7 +3,12 @@ package geoview.exceptions;
 
 public class InvalidInputException extends Exception {
 
-    public InvalidInputException(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public InvalidInputException(){
         
     }
 

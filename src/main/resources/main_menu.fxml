@@ -40,17 +40,16 @@
   </AnchorPane>
 <AnchorPane layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="375.0">
 <children>
-            <GridPane layoutX="88.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="200.0">
+            <GridPane layoutX="88.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="200.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
               </rowConstraints>
@@ -62,18 +61,19 @@
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-        <Button id="main-button" fx:id="sci" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sciEvent" prefHeight="35.0" prefWidth="200.0" text="Search Sewer Segments" GridPane.rowIndex="2">
+        <Button id="main-button" fx:id="search" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchEvent" prefHeight="35.0" prefWidth="200.0" text="Search Sewer Segments" GridPane.rowIndex="2">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-        <Button id="main-button" fx:id="predictivePerformance" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#predictivePerformanceEvent" prefHeight="35.0" prefWidth="200.0" text="Predictive Performance" GridPane.rowIndex="4">
+        <Button id="main-button" fx:id="maintenanceScenarios" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#maintenanceScenariosEvent" prefHeight="35.0" prefWidth="200.0" text="Maintenance Scenario" GridPane.rowIndex="4">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-        <Button id="main-button" fx:id="maintenanceScenarios" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#maintenanceScenariosEvent" prefHeight="35.0" prefWidth="200.0" text="Maintenance Scenario" GridPane.rowIndex="6">
+                  <Button id="main-button" fx:id="exit" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exitEvent" prefHeight="35.0" prefWidth="200.0" text="Exit" GridPane.rowIndex="6">
                      <font>
                         <Font size="14.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                </children>
             </GridPane>
 </children>

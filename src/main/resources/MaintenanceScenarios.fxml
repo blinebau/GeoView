@@ -11,9 +11,9 @@
 <?import javafx.collections.*?>
 <?scenebuilder-background-color #ffec98?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="theme" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geoview.controller.MaintenanceScenariosController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" styleClass="theme" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geoview.controller.MaintenanceScenariosController">
   <children>
-      <AnchorPane id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="620.0" stylesheets="@css/style.css">
+      <AnchorPane id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="750.0" stylesheets="@css/style.css">
          <children>
             <Text id="title" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maintenance Scenario">
                <font>
@@ -23,123 +23,139 @@
             <Text id="descriptive" layoutX="14.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Develop a 'What if?' maintenance plan based on budget and repair method." />
          </children>
       </AnchorPane>
-      <AnchorPane id="background" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="600.0" stylesheets="@css/style.css">
+      <AnchorPane id="background" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="750.0" stylesheets="@css/style.css">
          <children>
-            <VBox layoutX="125.0" layoutY="14.0" prefHeight="200.0" prefWidth="350.0" AnchorPane.topAnchor="14.0">
+            <AnchorPane layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="750.0">
                <children>
-                  <HBox prefHeight="42.0" prefWidth="340.0">
-                     <children>
-                        <Text fx:id="cipYearText" strokeType="OUTSIDE" strokeWidth="0.0" text="CIP Year" wrappingWidth="75.724609375">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <ChoiceBox fx:id="cipYear" prefHeight="26.0" prefWidth="224.0">
-                           <items>
-                               <FXCollections fx:factory="observableArrayList">
-                                   <String fx:value="2017" />
-                                   <String fx:value="2018" />
-                                   <String fx:value="2019" />
-                                   <String fx:value="2020" />
-                                   <String fx:value="2021" />
-                                   <String fx:value="2022" />
-                                   <String fx:value="2023" />
-                                   <String fx:value="2024" />
-                                   <String fx:value="2025" />
-                                   <String fx:value="2026" />
-                                   <String fx:value="2027" />
-                               </FXCollections>
-                           </items>
-                        </ChoiceBox>
-                     </children>
-                  </HBox>
-                  <Text fx:id="rehabMethodologyText" strokeType="OUTSIDE" strokeWidth="0.0" text="Rehabilitation Methodology">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <RadioButton fx:id="pipeReplacementRadio" mnemonicParsing="false" text="Pipe Replacement">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="rehabToggle" />
-                     </toggleGroup>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </RadioButton>
-                  <ChoiceBox fx:id="pipeReplacementChoiceBox" prefHeight="26.0" prefWidth="338.0">
-                     <items>
-                           <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="Same-Size Replacement" />
-                              <String fx:value="Up-Size Replacement" />
-                           </FXCollections>
-                     </items>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </ChoiceBox>
-                  <RadioButton fx:id="trenchlessRehabRadio" mnemonicParsing="false" text="Trenchless Rehab" toggleGroup="$rehabToggle">
-                     <padding>
-                        <Insets top="7.0" />
-                     </padding>
-                  </RadioButton>
-                  <ChoiceBox fx:id="trenchlessRehabChoiceBox" prefHeight="26.0" prefWidth="338.0">
-                     <items>
-                           <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="Full Trench Replacement" />
-                              <String fx:value="Partial Trench Replacement" />
-                           </FXCollections>
-                     </items>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </ChoiceBox>
-                  <GridPane fx:id="budgetGrid">
+                  <GridPane fx:id="functionalGrid" layoutX="205.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="104.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="236.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text fx:id="budgetText" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget  ($)" wrappingWidth="85.16796875">
+                        <Button fx:id="back" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backEvent" prefHeight="25.0" prefWidth="120.0" text="Back" textAlignment="CENTER">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets bottom="3.0" top="3.0" />
+                           </padding>
+                        </Button>
+                        <Button fx:id="generate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#generatePlanEvent" prefHeight="25.0" prefWidth="120.0" text="Generate Plan" GridPane.columnIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="750.0">
+               <children>
+                  <GridPane layoutX="175.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="400.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="340.0">
+                           <children>
+                              <Text fx:id="cipYearText" strokeType="OUTSIDE" strokeWidth="0.0" text="CIP Year" wrappingWidth="75.724609375">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <ChoiceBox fx:id="cipYear" prefHeight="26.0" prefWidth="333.0">
+                                 <items>
+                                     <FXCollections fx:factory="observableArrayList">
+                                         <String fx:value="2017" />
+                                         <String fx:value="2018" />
+                                         <String fx:value="2019" />
+                                         <String fx:value="2020" />
+                                         <String fx:value="2021" />
+                                         <String fx:value="2022" />
+                                         <String fx:value="2023" />
+                                         <String fx:value="2024" />
+                                         <String fx:value="2025" />
+                                         <String fx:value="2026" />
+                                         <String fx:value="2027" />
+                                     </FXCollections>
+                                 </items>
+                              </ChoiceBox>
+                           </children>
+                        </HBox>
+                        <GridPane fx:id="budgetGrid" GridPane.rowIndex="4">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="0.0" prefWidth="48.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="340.0" minWidth="10.0" prefWidth="292.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextField fx:id="budgetField" prefHeight="26.0" prefWidth="287.0" GridPane.columnIndex="1" />
+                              <Text fx:id="budgetText" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget  ($):" wrappingWidth="85.16796875">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                        </GridPane>
+                        <Text fx:id="rehabMethodologyText" strokeType="OUTSIDE" strokeWidth="0.0" text="Rehabilitation Methodology" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="budgetField" prefHeight="26.0" prefWidth="252.0" GridPane.columnIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                           <children>
+                              <RadioButton fx:id="trenchlessRehabRadio" mnemonicParsing="false" text="Trenchless Rehab">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="rehabToggle" />
+                                 </toggleGroup>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <ChoiceBox fx:id="trenchlessRehabChoiceBox" prefHeight="26.0" prefWidth="403.0">
+                                 <items>
+                                       <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="Full Trench Replacement" />
+                                          <String fx:value="Partial Trench Replacement" />
+                                       </FXCollections>
+                                 </items>
+                              </ChoiceBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                           <children>
+                              <RadioButton fx:id="pipeReplacementRadio" mnemonicParsing="false" text="Pipe Replacement" toggleGroup="$rehabToggle">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <ChoiceBox fx:id="pipeReplacementChoiceBox" prefHeight="26.0" prefWidth="414.0">
+                                 <items>
+                                       <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="Same-Size Replacement" />
+                                          <String fx:value="Up-Size Replacement" />
+                                       </FXCollections>
+                                 </items>
+                              </ChoiceBox>
+                           </children>
+                        </VBox>
                      </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
                   </GridPane>
                </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="600.0">
-         <children>
-            <GridPane fx:id="functionalGrid" layoutX="152.0" layoutY="14.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="back" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backEvent" prefHeight="25.0" prefWidth="120.0" text="Back" textAlignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" top="3.0" />
-                     </padding>
-                  </Button>
-                  <Button fx:id="generate" onAction="#generatePlanEvent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Generate Plan" GridPane.columnIndex="2" />
-               </children>
-            </GridPane>
+            </AnchorPane>
          </children>
       </AnchorPane>
   </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.collections.*?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color 0xffec98ff?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geoview.controller.ImportController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="geoview.controller.ImportController">
   <children>
-  <AnchorPane id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="620.0" stylesheets="@css/style.css">
+  <AnchorPane id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="770.0">
     <children>
             <Text id="descriptive" layoutX="14.0" layoutY="62.0" smooth="true" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Import sewer data from a local map package or an ArcGIS portal resource." />
             <Text id="title" layoutX="14.0" layoutY="33.0" smooth="true" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Import">
@@ -21,28 +22,19 @@
             </Text>
     </children>
   </AnchorPane>
-  <AnchorPane id="background" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="600.0" stylesheets="@css/style.css">
+  <AnchorPane id="background" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="750.0">
     <children>
-            <AnchorPane layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="600.0">
+            <AnchorPane layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="750.0">
                <children>
-            <GridPane layoutX="152.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="420.0">
+            <GridPane layoutX="215.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="320.0">
               <children>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
-                           <children>
-                    <Button fx:id="importButton" mnemonicParsing="false" onAction="#importEvent" prefHeight="25.0" prefWidth="125.0" text="Import" />
-                           </children>
-                        </AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0">
-                           <children>
-                    <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backEvent" prefHeight="25.0" prefWidth="125.0" text="Back" />
-                           </children>
-                        </AnchorPane>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="0.0" GridPane.columnIndex="1" />
+              <Button fx:id="importButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#importEvent" prefHeight="25.0" prefWidth="120.0" text="Import" GridPane.columnIndex="2" />
+              <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backEvent" prefHeight="25.0" prefWidth="120.0" text="Back" />
               </children>
               <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -50,50 +42,51 @@
             </GridPane>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane layoutY="45.0" prefHeight="250.0" prefWidth="750.0">
                <children>
-              <GridPane layoutX="61.0" layoutY="20.0">
+              <GridPane layoutX="175.0" layoutY="5.0" prefHeight="250.0" prefWidth="400.0">
                 <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                           <children>
-                              <Text layoutX="34.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose import method:" />
-                           </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                           <children>
-                      <RadioButton fx:id="fsRadio" layoutX="51.0" layoutY="6.0" mnemonicParsing="false" selected="true" text="Import from File System">
-                        <toggleGroup>
-                          <ToggleGroup fx:id="searchToggle" />
-                        </toggleGroup>
-                      </RadioButton>
-                           </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                           <children>
-                      <RadioButton fx:id="webRadio" layoutX="51.0" layoutY="6.0" mnemonicParsing="false" text="Import from Web" toggleGroup="$searchToggle" />
-                           </children>
-                  </AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <children>
-                              <Text layoutX="43.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Path :" />
-                              <TextField fx:id="pathField" layoutX="97.0" layoutY="2.0" prefHeight="25.0" prefWidth="260.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
-                           <children>
-                              <TextField fx:id="idField" layoutX="97.0" layoutY="3.0" prefHeight="25.0" prefWidth="260.0" />
-                              <Text layoutX="42.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Portal Id :" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
-                           <children>
-                              <TextField fx:id="urlField" layoutX="97.0" layoutY="3.0" prefHeight="25.0" prefWidth="260.0" />
-                              <Text layoutX="24.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service URL :" />
-                           </children>
-                        </AnchorPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose import method:" />
+                <RadioButton fx:id="fsRadio" mnemonicParsing="false" selected="true" text="Import from File System" GridPane.rowIndex="1">
+                  <toggleGroup>
+                    <ToggleGroup fx:id="searchToggle" />
+                  </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="webRadio" mnemonicParsing="false" text="Import from Web" toggleGroup="$searchToggle" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="File Path :" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <TextField fx:id="pathField" prefHeight="25.0" prefWidth="260.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="-60.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="urlField" prefHeight="25.0" prefWidth="260.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="-60.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Service URL :" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <TextField fx:id="idField" prefHeight="25.0" prefWidth="260.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="-60.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Portal Id :" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </Text>
                 </children>
                 <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="158.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="165.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="236.0" />
                 </columnConstraints>
                 <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

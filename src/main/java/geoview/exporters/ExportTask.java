@@ -28,7 +28,7 @@ public class ExportTask extends Task<Void> {
     
     private List<Map<String, Object>> attrColl;
     
-    private String[] exportDetails;
+    private List<String> exportDetails;
     //private LocalDateTime currentTime = LocalDateTime.now();
     
     private final String[] searchFields = { "SEWER_ID", "SCI", "AGE", "LENGTH", "PIPE_MATERIAL" };
@@ -39,7 +39,7 @@ public class ExportTask extends Task<Void> {
     /*	private final String PDF_DEST = "./src/main/resources/export-" + currentTime.toLocalDate() + "@" + currentTime.getHour() + "-" +
      currentTime.getMinute() + ".pdf";*/
     
-    public ExportTask(List<Map<String, Object>> newColl, String[] newDetails) {
+    public ExportTask(List<Map<String, Object>> newColl, List<String> newDetails) {
         attrColl = newColl;
         exportDetails = newDetails;
     }
@@ -66,7 +66,7 @@ public class ExportTask extends Task<Void> {
         doc.add(titleHeading);
         doc.add(generateSubHeader());
         
-        if(exportDetails[0].equals("Maintenance Plan")) {
+        if(exportDetails.get(0).equals("Maintenance Plan")) {
         	populateTable(doc, planFields);
         } else {
         	populateTable(doc, searchFields);
@@ -112,22 +112,22 @@ public class ExportTask extends Task<Void> {
     }
     
     private String buildDetailsMessage(StringBuilder builder) {
-    	String exportType = exportDetails[0];
+    	String exportType = exportDetails.get(0);
         builder.append(exportType);
         if(exportType.equals("Maintenance Plan")) {
         	builder.append("\nYear: ");
-        	builder.append(exportDetails[1]);
+        	builder.append(exportDetails.get(1));
         	builder.append("\nMethod: ");
-        	builder.append(exportDetails[2]);
+        	builder.append(exportDetails.get(2));
         	builder.append("\nBudget: $");
-        	builder.append(exportDetails[3]);
+        	builder.append(exportDetails.get(3));
         } else if(exportType.equals("Sewer Condition Index")){
-        	builder.append(exportDetails[1]);
-        	builder.append(exportDetails[2]);
+        	builder.append(exportDetails.get(1));
+        	builder.append(exportDetails.get(2));
         	builder.append(" - ");
-        	builder.append(exportDetails[3]);
+        	builder.append(exportDetails.get(3));
         } else {
-        	builder.append(exportDetails[1]);
+        	builder.append(exportDetails.get(1));
         }
         return builder.toString();
     }

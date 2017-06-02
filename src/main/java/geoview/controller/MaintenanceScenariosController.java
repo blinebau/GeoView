@@ -1,6 +1,8 @@
 package geoview.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +67,7 @@ public class MaintenanceScenariosController {
 		assert(back != null);
 		assert(rehabToggle != null);
 		pipeReplacementRadio.setSelected(true);
+		configureSelectionListeners();
 	} 
 	
 	@FXML
@@ -97,8 +100,18 @@ public class MaintenanceScenariosController {
 		}
 		String budget = budgetField.getText();
 		Task<List<Map<String, Object>>> planTask = new PlanTask(Integer.parseInt(year), method, Double.parseDouble(budget), mapData.getAttrCollection());
-		String[] taskDetails = { "Maintenance Plan", year, method, budget };
+		List<String> taskDetails = new ArrayList<>(Arrays.asList("Maintenance Plan", year, method, budget));
 		mapData.prepareTask(planTask, taskDetails);
+	}
+	
+	private void configureSelectionListeners() {
+		rehabToggle.selectedToggleProperty().addListener((observed, oldval, newval) -> {
+			if(newval.equals(pipeReplacementRadio)) {
+				trenchlessRehabChoiceBox.getSelectionModel().clearSelection();
+			} else {
+				pipeReplacementChoiceBox.getSelectionModel().clearSelection();
+			}
+		});
 	}
 
 	public void initMapData(Stage newMapStage, FeatureData newMapData) {

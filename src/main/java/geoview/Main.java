@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class Main extends Application {
 	
@@ -20,9 +19,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main_menu.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("main_menu.fxml"));
+			Parent root = loader.load();
 			Scene menuScene = new Scene(root);
 			primaryStage.setResizable(false);
+			primaryStage.setAlwaysOnTop(true);
 			primaryStage.setScene(menuScene);
 			primaryStage.getIcons().add(new Image("/window_icon.png"));
 			primaryStage.setTitle("GeoView");

@@ -42,7 +42,7 @@ public class FeatureData {
 		}
 	}
 	
-	public void prepareTask(Task<List<Map<String, Object>>> task, String[] taskDetails) {
+	public void prepareTask(Task<List<Map<String, Object>>> task, List<String> taskDetails) {
 
 		task.setOnSucceeded(t -> {
 			initiateTask(new ExportTask(task.getValue(), taskDetails));

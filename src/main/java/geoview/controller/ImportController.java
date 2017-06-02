@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
+import com.esri.arcgisruntime.mapping.Viewpoint;
 import com.esri.arcgisruntime.mapping.view.MapView;
 import com.esri.arcgisruntime.portal.Portal;
 import com.esri.arcgisruntime.portal.PortalItem;
@@ -107,6 +108,8 @@ public class ImportController {
 		@FXML 
 		public void importEvent(ActionEvent event) throws IOException {
 			if(mapStage == null) {
+				importButton.setText("Importing...");
+				importButton.setDisable(true);
 				importFeatureData();
 			} else {
 				String[] alertText = { "GeoView - Import Confirmation", "Confirm New Import", "Importing new data now will begin a new session, closing the map window. Do you wish to import new data?"};
@@ -135,6 +138,8 @@ public class ImportController {
 			}
 			mapStage = generateMapStage(map.getView());
 			mapStage.show();
+			importButton.setText("Import");
+			importButton.setDisable(false);
 		}
 		
 		private void importFeatureData() {
@@ -169,13 +174,15 @@ public class ImportController {
 		}
 		
 		private Stage generateMapStage(MapView view) {
+				Viewpoint viewPoint = new Viewpoint(40.278042, -75.312331, 10E3);
+				view.setViewpoint(viewPoint);
 				Stage mapStage = new Stage();
 				mapStage.setResizable(false);
 				mapStage.setOnCloseRequest((event) -> {
 					view.dispose();
 					ImportController.mapStage = null;
 				});
-				Scene scene = new Scene(view, 600, 400);
+				Scene scene = new Scene(view, 900, 600);
 				mapStage.setScene(scene);
 				mapStage.getIcons().add(new Image("/window_icon.png"));
 				mapStage.setTitle("GeoView - Map");

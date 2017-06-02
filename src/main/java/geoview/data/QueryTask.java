@@ -33,15 +33,11 @@ public class QueryTask extends Task<List<Map<String, Object>>> {
 	private List<Map<String, Object>> searchInRange() {
 		List<Map<String, Object>> resultAttr = new ArrayList<>();
 		for(Map<String, Object> attrMap : featureAttr) {
-			Integer sci = (Integer) attrMap.get(searchField);
-			if(sci >= low && sci <= high) {
+			Integer val = (Integer) attrMap.get(searchField);
+			if(val >= low && val <= high) {
 				resultAttr.add(attrMap);
 			}
 		}
 		return resultAttr;
-	}
-	
-	public String getSearchField() {
-		return searchField;
 	}
 }

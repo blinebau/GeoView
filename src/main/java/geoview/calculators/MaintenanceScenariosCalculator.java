@@ -38,7 +38,7 @@ public class MaintenanceScenariosCalculator {
             double featureCost = calculateFeatureCost(maintenanceType, feature);
             if((calculatedCost + featureCost) <= budget){
                 calculatedCost += featureCost;
-                feature.put("BUDGET", (Double)featureCost);
+                feature.put("BUDGET", (int)featureCost);
                 budgetedFeatures.add(feature);
             }
         }

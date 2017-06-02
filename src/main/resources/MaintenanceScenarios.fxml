@@ -128,8 +128,8 @@
                               <ChoiceBox fx:id="trenchlessRehabChoiceBox" prefHeight="26.0" prefWidth="403.0">
                                  <items>
                                        <FXCollections fx:factory="observableArrayList">
-                                          <String fx:value="Full Trench Replacement" />
-                                          <String fx:value="Partial Trench Replacement" />
+                                          <String fx:value="Full Trench Rehab" />
+                                          <String fx:value="Partial Trench Rehab" />
                                        </FXCollections>
                                  </items>
                               </ChoiceBox>

@@ -3,6 +3,7 @@ package geoview.calculators;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Collections;
 
 
 public class MaintenanceScenariosCalculator {
@@ -33,8 +34,9 @@ public class MaintenanceScenariosCalculator {
     public static List<Map<String, Object>> calculateMaintenanceScenarios(int year, String maintenanceType, double budget, List<Map<String, Object>> features){
         double calculatedCost = 0.0;
         List<Map<String,Object>> budgetedFeatures = new ArrayList<>();
-        
-        for(Map<String, Object> feature : features){
+        List<Map<String, Object>> tempList = new ArrayList<>(features);
+        Collections.reverse(tempList);
+        for(Map<String, Object> feature : tempList){
             double featureCost = calculateFeatureCost(maintenanceType, feature);
             if((calculatedCost + featureCost) <= budget){
                 calculatedCost += featureCost;

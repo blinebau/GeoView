@@ -31,14 +31,16 @@ public abstract class RiskModelCalculator {
                         tagValue = new Double(value.toString());
                     }
                     weightedCriteriaScore += tagValue * weights[tagIndex];
-                    usedTags++;
+                    if(weights[tagIndex] != 0.0){
+                        usedTags++;
+                    }
                 }
         }
         //Check for division by 0.
         if(!(usedTags < 1)){
-            return (int) weightedCriteriaScore/usedTags;
+            return (int) (weightedCriteriaScore/usedTags*10);
         }
-        return 0; //Or throw exception... Determine whether completely blank input should just calculate to 0.
+        return 0;
     }
     
     public void changeWeight(int index, double value){
